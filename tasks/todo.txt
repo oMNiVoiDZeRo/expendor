@@ -1,0 +1,4 @@
+File upload
+	# Reference file location in new table in database.
+	Store file in directory
+	Deduplication using md5 hash signatures.
