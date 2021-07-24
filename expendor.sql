@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 24, 2021 at 02:35 AM
+-- Generation Time: Jul 24, 2021 at 03:18 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -70,6 +70,18 @@ INSERT INTO `expenses` (`UID`, `Category`, `Who`, `Amount`, `Bill`) VALUES
 ('2021-06-27 19:11:23', 'Income', 'MiWAM UIA', '1324', 'This is not a bill.'),
 ('2021-06-27 19:12:02', 'Income', 'Dad', '100', 'This is not a bill.'),
 ('2021-06-27 19:12:20', 'Income', 'Reimbursements', '11', 'This is not a bill.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reports`
+--
+
+DROP TABLE IF EXISTS `reports`;
+CREATE TABLE IF NOT EXISTS `reports` (
+  `address` text NOT NULL,
+  `upload` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
