@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<title>Record Record</title>
+<title>Register Account</title>
 <link href="../style.css" rel="stylesheet" />
 </head>
 <body>
