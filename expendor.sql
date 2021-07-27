@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 24, 2021 at 03:18 AM
+-- Generation Time: Jul 27, 2021 at 07:05 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -82,6 +82,27 @@ CREATE TABLE IF NOT EXISTS `reports` (
   `address` text NOT NULL,
   `upload` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `account` int(11) NOT NULL AUTO_INCREMENT,
+  `email` text NOT NULL,
+  `password` text NOT NULL,
+  PRIMARY KEY (`account`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`account`, `email`, `password`) VALUES
+(2, 'admin@admin.com', '098f6bcd4621d373cade4e832627b4f6');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
