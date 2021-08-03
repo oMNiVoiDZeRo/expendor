@@ -6,7 +6,7 @@
 </head>
 <body>
 <?php
-include('header.php');
+include('../header.php');
 if($conn == true){
 if(isset($_POST['email']) && isset($_POST['password'])){
 $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -25,7 +25,7 @@ If incorrect password throw error.
 } else {
 echo '<br/>';
 echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
-	include('footer.php');
+	include('../footer.php');
 ?>
 </body>
 </html>
