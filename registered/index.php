@@ -12,11 +12,9 @@ include('../header.php');
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $password = mysqli_real_escape_string($conn, $_POST['password']);
 $password = md5($password);
-sql = "SELECT `email` FROM `users` WHERE email=?";
+$sql = "SELECT `email` FROM `users` WHERE email = '$email'";
 
-if ($stmt = $dbl->prepare($query)){
-
-        $stmt->bind_param("s", $email);
+if ($stmt = $conn->prepare($sql)){
 
         if($stmt->execute()){
             $stmt->store_result();
@@ -27,21 +25,22 @@ if ($stmt = $dbl->prepare($query)){
 
             if ($stmt->num_rows == 1){
 
-            echo "That email already exists.";
-            exit;
+            echo "<center>That email already exists.</center>";
+			echo '<center><a href="../register/">Try again.</a></center>';
 
             } else {
 				$sql = "INSERT INTO `users` (email, password) VALUES ('$email', '$password')";
+				if(mysqli_query($conn, $sql)){
+					echo '<center><p><strong>Account successfully registered.</strong></p></center>';
+					echo '<table border="1" cellpadding="10" align="center">';
+					echo '<tr><td>' . $email . '</td></tr>';
+					echo '</table>';
+				} else {
+					echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);
+				}
 			}
         }
     }
-
-if(mysqli_query($conn, $sql)){
-echo '<center><p><strong>Account successfully registered.</strong></p></center>';
-echo '<table border="1" cellpadding="10" align="center">';
-echo '<tr><td>' . $email . '</td></tr>';
-echo '</table>';
-} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 echo '<br/>';
 echo '<center><a href="../">Public Records</a></center>';
 include('../footer.php');
