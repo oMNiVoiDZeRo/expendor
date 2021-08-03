@@ -7,7 +7,7 @@
 <body>
 <center><strong>You are about to login to your account.</strong></center><br/>
 <table border="1" cellpadding="10" align="center">
-<form name="register" action="../registered/" method="post">
+<form name="login" action="../logged/" method="post">
 <tr><td align="center">
 <input type="text" name="email" placeholder="Email?" />
 </td></tr>
