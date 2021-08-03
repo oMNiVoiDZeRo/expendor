@@ -26,9 +26,6 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
-print_r($categories);
-echo '<br/>';
-print_r($bills);
 ?>
 <center><strong>You are about to add a record.</strong></center><br/>
 <table border="1" cellpadding="10" align="center">
