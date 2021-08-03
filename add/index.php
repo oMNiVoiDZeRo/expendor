@@ -3,6 +3,7 @@
 <head>
 <title>Add Record</title>
 <link href="../style.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <center><strong>You are about to add a record.</strong></center><br/>
@@ -49,6 +50,6 @@
 </form>
 </table>
 <br/>
-<center><a href="../">Public Records</a><br/></center>
+<center><a href="../">Dashboard</a><br/></center>
 </body>
 </html>

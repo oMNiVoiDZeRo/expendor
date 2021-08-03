@@ -15,6 +15,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <head>
 <title>Record Record</title>
 <link href="../style.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <?php
@@ -34,7 +35,7 @@ echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><
 echo '</table>';
 } else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 echo '<br/>';
-echo '<center><a href="../">Public Records</a></center>';
+echo '<center><a href="../">Dashboard</a></center>';
 include('../footer.php');
 } else {
 echo '<center>You submitted an incomplete record.</center><br/>';

@@ -14,8 +14,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <html>
 <head>
 <title>Expendor</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="../style.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <?php
@@ -23,7 +24,7 @@ include('header.php');
 ?>
 	<table align="center">
 	<tr><td>
-	<h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
+	<h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to your dashboard.</h1>
 	</td></tr>
 	</table>
 <?php
@@ -32,6 +33,7 @@ echo '<center><strong>Expenses All Time</strong></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr><td align="center"><strong>Income</strong></td><td align="center"><strong>Food</strong></td><td align="center"><strong>Health</strong></td><td align="center"><strong>Home</strong></td><td><strong>Auto</strong></td><td><strong>Insurance</strong></td><td><strong>Utility</strong></td><td><strong>Loan</strong></td><td><strong>Work</strong></td><td><strong>Entertainment</strong></td></tr>';
 echo '<tr><td>';
+#Custom categories would require a recurring loop to display all categories one at a time.
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Income'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);

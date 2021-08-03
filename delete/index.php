@@ -1,8 +1,20 @@
-<!doctype html>
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login/");
+    exit;
+} else {
+	$username = $_SESSION["username"]; 
+}
+?><!doctype html>
 <html>
 <head>
 <title>Delete Record</title>
 <link href="../style.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <center><strong>You are about to delete a record.</strong></center><br/>
@@ -22,6 +34,6 @@
 </table>
 </form>
 <br/>
-<center><a href="../">Public Records</a><br/></center>
+<center><a href="../">Dashboard</a><br/></center>
 </body>
 </html>
