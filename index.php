@@ -265,7 +265,9 @@ foreach($result as $row){
 $UID = $row['UID'];
 if($UID != 1){
 $UID = 'UID';}
-echo '<tr><td class="x"><form action="delete/" method="post"><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . '$' . number_format($row['Amount'], 2, '.', ',') . '</td><td>' . $row['Bill'] . '</td><td><input type="submit" name="delete" value="Delete"/></form></td></tr>';}
+echo '<tr><td class="x"><form action="delete/" method="post"><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . '$' . number_format($row['Amount'], 2, '.', ',') . '</td><td>' . $row['Bill'] . '</td><td><input type="submit" name="delete" value="Delete"/></form></td></tr>';
+# Add edit button that allows changing category and bill classification with existing option to save unchanged or cancel.
+}
 echo '</tbody></table><br/>';
 
 }
