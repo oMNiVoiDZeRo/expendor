@@ -1,13 +1,30 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
 <!doctype html>
 <html>
 <head>
 <title>Expendor</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link href="style.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <?php
 include('header.php');
+?>
+	<table align="center">
+	<tr><td>
+	<h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
+	</td></tr>
+	</table>
+<?php
 if($conn == true){
 echo '<center><strong>Expenses All Time</strong></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
@@ -250,9 +267,20 @@ echo '</tbody></table><br/>';
 }
 echo '<br/>';
 echo '<center><a href="add/">Add expense to database.</a></center>';
+echo '<br/>';
 } else {
 echo '<br/>';
 echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
+?>
+	<table align="center">
+	<tr><td>
+    <p>
+        <a href="reset/" class="btn btn-warning">Reset Your Password</a>
+        <a href="logout/" class="btn btn-danger ml-3">Sign Out of Your Account</a>
+    </p>
+	</td></tr>
+	</table>
+<?php
 include('footer.php');
 ?>
 </body>
