@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 27, 2021 at 07:05 AM
+-- Generation Time: Aug 03, 2021 at 09:08 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -24,11 +24,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `expenses`
+-- Table structure for table `reports`
 --
 
-DROP TABLE IF EXISTS `expenses`;
-CREATE TABLE IF NOT EXISTS `expenses` (
+DROP TABLE IF EXISTS `reports`;
+CREATE TABLE IF NOT EXISTS `reports` (
+  `address` text NOT NULL,
+  `upload` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test`
+--
+
+DROP TABLE IF EXISTS `test`;
+CREATE TABLE IF NOT EXISTS `test` (
   `UID` datetime NOT NULL,
   `Category` text NOT NULL,
   `Who` text NOT NULL,
@@ -38,10 +50,10 @@ CREATE TABLE IF NOT EXISTS `expenses` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `expenses`
+-- Dumping data for table `test`
 --
 
-INSERT INTO `expenses` (`UID`, `Category`, `Who`, `Amount`, `Bill`) VALUES
+INSERT INTO `test` (`UID`, `Category`, `Who`, `Amount`, `Bill`) VALUES
 ('2021-06-27 16:39:21', 'Home', 'Allanza', '1195', 'Rent'),
 ('2021-06-27 18:48:42', 'Utility', 'Nevada Energy', '40.63', 'Electric'),
 ('2021-06-27 18:49:05', 'Utility', 'Nevada Energy', '47.14', 'Electric'),
@@ -74,35 +86,25 @@ INSERT INTO `expenses` (`UID`, `Category`, `Who`, `Amount`, `Bill`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reports`
---
-
-DROP TABLE IF EXISTS `reports`;
-CREATE TABLE IF NOT EXISTS `reports` (
-  `address` text NOT NULL,
-  `upload` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `account` int(11) NOT NULL AUTO_INCREMENT,
-  `email` text NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` text NOT NULL,
   `password` text NOT NULL,
-  PRIMARY KEY (`account`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`account`, `email`, `password`) VALUES
-(2, 'admin@admin.com', '098f6bcd4621d373cade4e832627b4f6');
+INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
+(6, 'admin', '$2y$10$UX3qJmanF.H6lgtNk0jpqepg3xPj2KfGD/fA34MitgQMIlsS0dKeC', '2021-08-03 13:40:52'),
+(10, 'test', '$2y$10$6o6TvcMnnmfs9uRJVA0hxugpJw5uM.DFz2dr6E2gAFF6xgwxvjIPm', '2021-08-03 14:04:20');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
