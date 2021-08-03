@@ -1,3 +1,15 @@
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login/");
+    exit;
+} else {
+	$username = $_SESSION["username"]; 
+}
+?>
 <!doctype html>
 <html>
 <head>
@@ -13,7 +25,7 @@ $category = mysqli_real_escape_string($conn, $_POST['category']);
 $who = mysqli_real_escape_string($conn, $_POST['who']);
 $amount = mysqli_real_escape_string($conn, $_POST['amount']);
 $bill = mysqli_real_escape_string($conn, $_POST['bill']);
-$sql = "INSERT INTO `expenses` (uid, category, who, amount, bill) VALUES ('$date', '$category', '$who', '$amount', '$bill')";
+$sql = "INSERT INTO `$username` (uid, category, who, amount, bill) VALUES ('$date', '$category', '$who', '$amount', '$bill')";
 if(mysqli_query($conn, $sql)){
 echo '<center><p><strong>Expense successfully recorded.</strong></p></center>';
 echo '<table border="1" cellpadding="10" align="center">';

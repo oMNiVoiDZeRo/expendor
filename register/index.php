@@ -79,6 +79,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+		
+		// Prepare an insert statement
+        $sql = "CREATE TABLE IF NOT EXISTS `$username` (`UID` datetime NOT NULL, `Category` text NOT NULL, `Who` text NOT NULL, `Amount` text NOT NULL, `Bill` text NOT NULL, PRIMARY KEY (`UID`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+         
+        if($stmt = mysqli_prepare($conn, $sql)){
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
                 header("location: ../login/");
             } else{

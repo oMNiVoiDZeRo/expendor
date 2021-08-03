@@ -6,6 +6,8 @@ session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login/");
     exit;
+} else {
+	$username = $_SESSION["username"]; 
 }
 ?>
 <!doctype html>
@@ -26,8 +28,6 @@ include('header.php');
 	</table>
 <?php
 if($conn == true){
-$username = $_SESSION["username"]; 
-
 echo '<center><strong>Expenses All Time</strong></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr><td align="center"><strong>Income</strong></td><td align="center"><strong>Food</strong></td><td align="center"><strong>Health</strong></td><td align="center"><strong>Home</strong></td><td><strong>Auto</strong></td><td><strong>Insurance</strong></td><td><strong>Utility</strong></td><td><strong>Loan</strong></td><td><strong>Work</strong></td><td><strong>Entertainment</strong></td></tr>';
