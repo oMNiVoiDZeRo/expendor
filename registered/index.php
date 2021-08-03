@@ -11,8 +11,31 @@ if($_POST['password'] == $_POST['password-confirm']){
 include('../header.php');
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $password = mysqli_real_escape_string($conn, $_POST['password']);
-$password = md5($password);  
-$sql = "INSERT INTO `users` (email, password) VALUES ('$email', '$password')";
+$password = md5($password);
+sql = "SELECT `email` FROM `users` WHERE email=?";
+
+if ($stmt = $dbl->prepare($query)){
+
+        $stmt->bind_param("s", $email);
+
+        if($stmt->execute()){
+            $stmt->store_result();
+
+            $email_check= "";         
+            $stmt->bind_result($email_check);
+            $stmt->fetch();
+
+            if ($stmt->num_rows == 1){
+
+            echo "That email already exists.";
+            exit;
+
+            } else {
+				$sql = "INSERT INTO `users` (email, password) VALUES ('$email', '$password')";
+			}
+        }
+    }
+
 if(mysqli_query($conn, $sql)){
 echo '<center><p><strong>Account successfully registered.</strong></p></center>';
 echo '<table border="1" cellpadding="10" align="center">';
