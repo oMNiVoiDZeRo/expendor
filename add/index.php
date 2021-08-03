@@ -13,11 +13,18 @@
 	date_default_timezone_set('America/Los_Angeles');
 	$date = date("Y-m-d H:i:s");
 	echo $date;
+	
+# str_getcsv to get categories and bills from user table in database.
+	
 ?>"/>
 </td></tr>
 <tr><td align="center">
 <select name="category">
 <option>Category?</option>
+<?php
+# loop through variable to display all as select options.
+# $categories = array_map('str_getcsv', $row['categories']);
+?>
 <option>Income</option>
 <option>Food</option>
 <option>Health</option>
@@ -33,6 +40,10 @@
 <input type="text" name="amount" placeholder="Amount?" /><br/>
 <select name="bill">
 <option>Is this a bill?</option>
+<?php
+# loop through variable to display all as select options.
+# $categories = array_map('str_getcsv', $row['bills']);
+?>
 <option>Rent</option>
 <option>Electric</option>
 <option>Utility</option>

@@ -67,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        $sql = "INSERT INTO users (username, password, categories, bills) VALUES (?, ?, 'Income,Food,Health,Home,Auto,Insurance,Utility,Loan,Work,Entertainment', 'Rent,Electric,Utility,Home Insurance,Health Insurance,Car Insurance,Phone,Loan,Internet,Web Hosting,This is not a bill.')";
          
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
