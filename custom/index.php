@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Untitled Document</title>
+<title>Customize Classifications</title>
 </head>
 <?php
 # Get categories from mysql database for logged in user table.
