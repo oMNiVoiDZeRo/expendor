@@ -7,6 +7,8 @@
 <?php
 # Get categories from mysql database for logged in user table.
 # Should be CSV in one column.
+$categories = array_map('str_getcsv', $row['categories']));
+$bills = array_map('str_getcsv', $row['bills']));
 # Loop to display each value in row with edit and delete buttons.
 #	Edit button swaps label with text input.
 #	Delete button asks to confirm deletion of category.
