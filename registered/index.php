@@ -30,6 +30,7 @@ if ($stmt = $conn->prepare($sql)){
 
             } else {
 				$sql = "INSERT INTO `users` (email, password) VALUES ('$email', '$password')";
+				# Create unique table associated to email in users table for each user.
 				if(mysqli_query($conn, $sql)){
 					echo '<center><p><strong>Account successfully registered.</strong></p></center>';
 					echo '<table border="1" cellpadding="10" align="center">';
