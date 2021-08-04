@@ -65,3 +65,8 @@ div.wrapper {
 	text-align: center;
 	margin: 0 auto;
 }
+
+header a span {
+	width: 50vw;
+	font-size: 28px;
+}
