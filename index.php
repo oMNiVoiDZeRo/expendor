@@ -35,7 +35,7 @@ include('header.php');
 ?>
 	<table align="center">
 	<tr><td>
-	<h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to your Expendor dashboard.</h1>
+	<h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>! Welcome to your Expendor dashboard.</h1>
 	</td></tr>
 	</table>
 <?php
@@ -222,5 +222,8 @@ echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 <?php
 include('footer.php');
 ?>
+<footer class="py-3 my-4">
+    <p class="text-center text-muted">&copy; 2021 Expendor</p>
+</footer>
 </body>
 </html>

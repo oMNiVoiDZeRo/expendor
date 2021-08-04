@@ -120,6 +120,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <p>Already have an account? <a href="../login/">Login here</a>.</p>
         </form>
-    </div>    
+    </div>
+<footer class="py-3 my-4">
+    <p class="text-center text-muted">&copy; 2021 Expendor</p>
+</footer>
 </body>
 </html>

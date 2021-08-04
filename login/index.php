@@ -105,5 +105,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <p>Don't have an account? <a href="../register/">Sign up now</a>.</p>
         </form>
     </div>
+<footer class="py-3 my-4">
+    <p class="text-center text-muted">&copy; 2021 Expendor</p>
+</footer>
 </body>
 </html>

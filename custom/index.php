@@ -84,6 +84,9 @@ echo '<br/>';
 echo '<center><a href="../">Dashboard</a></center>';
 include('../footer.php');
 ?>
+<footer class="py-3 my-4">
+    <p class="text-center text-muted">&copy; 2021 Expendor</p>
+</footer>
 <script>
 $(document).ready(function() {
 	$('table').on("click",".delete", function(e){
