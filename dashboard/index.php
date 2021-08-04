@@ -200,7 +200,6 @@ if($type == 0){
 if($UID != 1){
 $UID = 'UID';}
 echo '<tr><td class="x"><form action="../edit/" method="post"><input type="hidden" name="type" value="' . $row['Type'] . '" /><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . numfmt_format_currency($fmt, $row['Amount'], "USD") . '</td><td>' . $row['Bill'] . '</td><td>' . $typeMessage . '</td><td><input type="submit" name="edit" value="Edit"/><input type="submit" name="delete" value="Delete"/></form></td></tr>';
-# Add edit button that allows changing category and bill classification with existing option to save unchanged or cancel.
 }
 echo '</tbody></table><br/>';
 
