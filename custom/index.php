@@ -42,16 +42,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			echo '<center><p><strong>Bills successfully updated.</strong></p></center>';
 		} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 	}
-	
-	if(!isset($_POST["debt"])){
-		echo "You don't have any debt classifications.<br/>";
-	} else {
-		$debt = mysqli_real_escape_string($conn, implode(',', $_POST["debt"]));
-		$sql = "UPDATE `users` SET `debt`='$debt' WHERE `username` = '$username'";
-		if(mysqli_query($conn, $sql)){
-			echo '<center><p><strong>Debt successfully updated.</strong></p></center>';
-		} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
-	}
 
 	echo '<br/>';
 }	
@@ -61,7 +51,6 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
-$debt = explode (",", $row['debt']);
 echo '<form action=' . htmlspecialchars($_SERVER["PHP_SELF"]) . ' method="post">';
 echo '<table class="custom categories" align="center">';
 echo '<tr><td><center><strong>Customize your categories:</strong></center><hr/></td></tr>';
