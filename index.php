@@ -29,225 +29,106 @@ include('header.php');
 	</table>
 <?php
 if($conn == true){
+$sql = "SELECT * FROM `users` WHERE `username` = '$username'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$categories = explode (",", $row['categories']);
+$bills = explode (",", $row['bills']);	
+
 echo '<center><strong>Expenses All Time</strong></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
-echo '<tr><td align="center"><strong>Income</strong></td><td align="center"><strong>Food</strong></td><td align="center"><strong>Health</strong></td><td align="center"><strong>Home</strong></td><td><strong>Auto</strong></td><td><strong>Insurance</strong></td><td><strong>Utility</strong></td><td><strong>Loan</strong></td><td><strong>Work</strong></td><td><strong>Entertainment</strong></td></tr>';
-echo '<tr><td>';
+echo '<tr>';
+	
+foreach($categories as $key => $value):
+echo '<td align="center"><strong>'.$value.'</td>';
+endforeach;
+	
+echo '</tr>';
+echo '<tr>';
+	
+foreach($categories as $key => $value):
+echo '<td>';
 #Custom categories would require a recurring loop to display all categories one at a time.
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Income'";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Food'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Health'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Home'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Auto'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Insurance'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Utility'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Loan'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Work'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Entertainment'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td></tr>';
+echo '</td>';
+endforeach;
+	
+echo '</tr>';
 echo '</table><br/><hr/><br/><br/>';
 
 echo '<center><strong>Expenses This Year</strong></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
-echo '<tr><td align="center"><strong>Income</strong></td><td align="center"><strong>Food</strong></td><td align="center"><strong>Health</strong></td><td align="center"><strong>Home</strong></td><td><strong>Auto</strong></td><td><strong>Insurance</strong></td><td><strong>Utility</strong></td><td><strong>Loan</strong></td><td><strong>Work</strong></td><td><strong>Entertainment</strong></td></tr>';
-echo '<tr><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Income' AND YEAR(UID) = YEAR(CURRENT_DATE())";
+echo '<tr>';
+	
+foreach($categories as $key => $value):
+echo '<td align="center"><strong>'.$value.'</td>';
+endforeach;
+	
+echo '</tr>';
+echo '<tr>';
+	
+foreach($categories as $key => $value):
+echo '<td>';
+#Custom categories would require a recurring loop to display all categories one at a time.
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND YEAR(UID) = YEAR(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Food' AND YEAR(UID) = YEAR(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Health' AND YEAR(UID) = YEAR(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Home' AND YEAR(UID) = YEAR(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Auto' AND YEAR(UID) = YEAR(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Insurance' AND YEAR(UID) = YEAR(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Utility' AND YEAR(UID) = YEAR(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Loan' AND YEAR(UID) = YEAR(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Work' AND YEAR(UID) = YEAR(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Entertainment' AND YEAR(UID) = YEAR(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td></tr>';
+echo '</td>';
+endforeach;
+	
+echo '</tr>';
 echo '</table><br/><hr/><br/><br/>';
 
 echo '<center><strong>Expenses This Month</strong></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
-echo '<tr><td align="center"><strong>Income</strong></td><td align="center"><strong>Food</strong></td><td align="center"><strong>Health</strong></td><td align="center"><strong>Home</strong></td><td><strong>Auto</strong></td><td><strong>Insurance</strong></td><td><strong>Utility</strong></td><td><strong>Loan</strong></td><td><strong>Work</strong></td><td><strong>Entertainment</strong></td></tr>';
-echo '<tr><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Income' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+echo '<tr>';
+	
+foreach($categories as $key => $value):
+echo '<td align="center"><strong>'.$value.'</td>';
+endforeach;
+	
+echo '</tr>';
+echo '<tr>';
+	
+foreach($categories as $key => $value):
+echo '<td>';
+#Custom categories would require a recurring loop to display all categories one at a time.
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Food' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Health' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Home' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Auto' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Insurance' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Utility' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Loan' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Work' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Entertainment' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td></tr>';
-echo '</table><br/><br/>';
+echo '</td>';
+endforeach;
+echo '</tr>';
+echo '</table><br/><hr/><br/><br/>';
 
 echo '<center><strong>Monthly Bill Tracking</strong></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
-echo '<tr><td align="center"><strong>Rent</strong></td><td align="center"><strong>Electric</strong></td><td align="center"><strong>Utility</strong></td><td><strong>Home Insurance</strong></td><td><strong>Car Insurance</strong></td><td><strong>Internet</strong></td><td><strong>Phone</strong></td><td><strong>Loan</strong></td><td><strong>Web Hosting</strong></td></tr>';
-echo '<tr><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = 'Rent' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+echo '<tr>';
+	
+foreach($bills as $key => $value):
+echo '<td align="center"><strong>'.$value.'</td>';
+endforeach;
+	
+echo '</tr>';
+echo '<tr>';
+	
+foreach($bills as $key => $value):
+echo '<td>';
+#Custom categories would require a recurring loop to display all categories one at a time.
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = 'Electric' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = 'Utility' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = 'Home Insurance' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = 'Car Insurance' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = 'Internet' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = 'Phone' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = 'Loan' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td><td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = 'Web Hosting' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
-echo '</td></tr>';
-echo '</table><br/><hr/><br/><br/>';	
+echo '</td>';
+endforeach;
+	
+echo '</tr>';
+echo '</table><br/><hr/><br/><br/>';
 
 echo '<center><strong>Expenses Log</strong></center><br/>';
 $sql = "SELECT * FROM `$username` ORDER BY UID DESC";
