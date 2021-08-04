@@ -45,7 +45,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </table>
 </form>
 <br/>
-<center><a href="../">Dashboard</a><br/></center>
+<center><a href="../dashboard/">Dashboard</a><br/></center>
 <footer class="py-3 my-4">
     <p class="text-center text-muted">&copy; 2021 Expendor</p>
 </footer>

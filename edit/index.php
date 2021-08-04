@@ -116,7 +116,7 @@ value="1">I owe this.</option>
 			$result = mysqli_query($conn, $sql);
 			$row = mysqli_fetch_assoc($result);
 ?>
-<tr><td align="center"><strong>Datetime</strong></td><td align="center"><strong>Category</strong></td><td align="center"><strong>Who</strong></td><td align="center"><strong>Amount</strong></td><td align="center"><strong>Bill</strong></td></tr>
+<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th></th></tr>
 <tr><td align="center" class="x">
 <input type="hidden" name="date" value="<?php echo $date; ?>" /><?php echo $date; ?>
 </td>
@@ -139,7 +139,7 @@ value="1">I owe this.</option>
 </table>
 </form>
 <br/>
-<center><a href="../">Dashboard</a><br/></center>
+<center><a href="../dashboard/">Dashboard</a><br/></center>
 <?php
 	}
 }
