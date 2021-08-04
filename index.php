@@ -60,15 +60,13 @@ echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
-if ($key == 'Income') continue;
 echo '<td align="center"><strong>'.$value.'</td>';
 endforeach;
 	
 echo '</tr>';
 echo '<tr>';
-	
+
 foreach($categories as $key => $value):
-if ($key == 'Income') continue;
 echo '<td>';
 #Custom categories would require a recurring loop to display all categories one at a time.
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value'";
@@ -86,7 +84,6 @@ echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
-if ($key == 'Income') continue;
 echo '<td align="center"><strong>'.$value.'</td>';
 endforeach;
 	
@@ -94,7 +91,6 @@ echo '</tr>';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
-if ($key == 'Income') continue;
 echo '<td>';
 #Custom categories would require a recurring loop to display all categories one at a time.
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND YEAR(UID) = YEAR(CURRENT_DATE())";
@@ -112,7 +108,6 @@ echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
-if ($key == 'Income') continue;
 echo '<td align="center"><strong>'.$value.'</td>';
 endforeach;
 	
@@ -120,7 +115,6 @@ echo '</tr>';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
-if ($key == 'Income') continue;
 echo '<td>';
 #Custom categories would require a recurring loop to display all categories one at a time.
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND MONTH(UID) = MONTH(CURRENT_DATE())";
