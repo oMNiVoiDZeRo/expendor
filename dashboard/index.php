@@ -40,11 +40,13 @@ include('../header.php');
 	</table>
 <?php
 if($conn == true){
+$fmt = numfmt_create('en_US', NumberFormatter::CURRENCY );
 $sql = "SELECT * FROM `users` WHERE `username` = '$username'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
+// $currencies = explode (",", $row['currencies']);
 	
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Income' AND `Type` = '0'";
 $result = mysqli_query($conn, $sql);
@@ -68,8 +70,8 @@ echo '<th align="center" width="50%"><strong>Income</strong></th>';
 echo '<th align="center" width="50%"><strong>Outcome</strong></th>';
 echo '</tr>';
 echo '<tr>';
-echo '<td align="center">' . '$' . number_format($income, 2, '.', ',') . '</td>';
-echo '<td align="center">' . '$' . number_format($outcome, 2, '.', ',') . '</td>';
+echo '<td align="center">' . numfmt_format_currency($fmt, $income, "USD") . '</td>';
+echo '<td align="center">' . numfmt_format_currency($fmt, $outcome, "USD") . '</td>';
 echo '</tr>';
 echo '</table><br/><hr/><br/><br/>';
 	
@@ -89,7 +91,7 @@ echo '<td>';
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' ";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
+echo numfmt_format_currency($fmt, $row['value_sum'], "USD");
 echo '</td>';
 endforeach;
 	
@@ -112,7 +114,7 @@ echo '<td>';
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND YEAR(UID) = YEAR(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
+echo numfmt_format_currency($fmt, $row['value_sum'], "USD");
 echo '</td>';
 endforeach;
 	
@@ -135,7 +137,7 @@ echo '<td>';
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
+echo numfmt_format_currency($fmt, $row['value_sum'], "USD");
 echo '</td>';
 endforeach;
 echo '</tr>';
@@ -167,8 +169,8 @@ $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$valu
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $owed = $row['value_sum'];
-	
-echo '$' . number_format((-$owed + $paid), 2, '.', ',');
+
+echo numfmt_format_currency($fmt, (-$owed + $paid), "USD");
 echo '</td>';
 endforeach;
 	
@@ -197,7 +199,7 @@ if($type == 0){
 }
 if($UID != 1){
 $UID = 'UID';}
-echo '<tr><td class="x"><form action="../edit/" method="post"><input type="hidden" name="type" value="' . $row['Type'] . '" /><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . '$' . number_format($row['Amount'], 2, '.', ',') . '</td><td>' . $row['Bill'] . '</td><td>' . $typeMessage . '</td><td><input type="submit" name="edit" value="Edit"/><input type="submit" name="delete" value="Delete"/></form></td></tr>';
+echo '<tr><td class="x"><form action="../edit/" method="post"><input type="hidden" name="type" value="' . $row['Type'] . '" /><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . numfmt_format_currency($fmt, $row['Amount'], "USD") . '</td><td>' . $row['Bill'] . '</td><td>' . $typeMessage . '</td><td><input type="submit" name="edit" value="Edit"/><input type="submit" name="delete" value="Delete"/></form></td></tr>';
 # Add edit button that allows changing category and bill classification with existing option to save unchanged or cancel.
 }
 echo '</tbody></table><br/>';

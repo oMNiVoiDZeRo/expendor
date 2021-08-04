@@ -81,7 +81,7 @@ echo '<tr><td><br/><a class="addBill" href="#">Add Bill</a><br/><br/><br/></td><
 echo '</table><br/><hr/><br/>';
 echo '<center><input type="submit" value="Save Classifications" /></center></form>';
 echo '<br/>';
-echo '<center><a href="../">Dashboard</a></center>';
+echo '<center><a href="../dashboard/">Dashboard</a></center>';
 include('../footer.php');
 ?>
 <footer class="py-3 my-4">
