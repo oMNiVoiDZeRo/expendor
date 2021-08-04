@@ -41,7 +41,7 @@ $bills = explode (",", $row['bills']);
 <option>Category?</option>
 <?php
 foreach($categories as $key => $value):
-echo '<option value="'.$key.'">'.$value.'</option>'; //close your tags!!
+echo '<option value="'.$key.'">'.$value.'</option>';
 endforeach;
 ?>
 </select>
@@ -51,7 +51,7 @@ endforeach;
 <option>Is this a bill?</option>
 <?php
 foreach($bills as $key => $value):
-echo '<option value="'.$key.'">'.$value.'</option>'; //close your tags!!
+echo '<option value="'.$key.'">'.$value.'</option>';
 endforeach;
 ?>
 </select>

@@ -43,3 +43,13 @@ input[type=file] {
 	-ms-user-select: none;
 	user-select: none;
 }
+
+table.custom tr {
+	position: relative;
+}
+
+table.custom tr td a.delete {
+	position: absolute;
+	top: 50%;
+	transform: translate(-80px,-50%);
+}

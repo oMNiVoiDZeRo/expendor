@@ -15,20 +15,52 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <head>
 <meta charset="utf-8">
 <title>Customize Classifications</title>
+<link href="../style.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+<body>
 <?php
 include('../header.php');
-# Get categories from mysql database for logged in user table.
-# Should be CSV in one column.
-# Loop to display each value in row with edit and delete buttons.
-#	Edit button swaps label with text input.
-#	Delete button asks to confirm deletion of category.
-# After loop add new category button.
-# Without postback (AJAX) have category inserted into row above add new category.
-# Accomplish same with bill management.
-# Return to dashboard button and add expense button.
+$sql = "SELECT * FROM `users` WHERE `username` = '$username'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$categories = explode (",", $row['categories']);
+$bills = explode (",", $row['bills']);
+echo '<table class="custom categories" align="center">';
+echo '<tr><td><center><strong>Customize your categories:</strong></center><hr/></td></tr>';
+foreach($categories as $key => $value):
+echo '<tr><td><input type="text" name="categories[]" value="'.$value.'" /> <a class="delete" href="#">Delete</a></td></tr>';
+endforeach;
+echo '<tr><td><br/><a class="addCat" href="#">Add Category</a><br/><br/><br/></td></tr>';
+echo '</table><br/><hr/><br/>';
+echo '<table class="custom bills" align="center">';
+echo '<tr><td><center><strong>Customize your bill classifications:</strong></center><hr/></td></tr>';
+foreach($bills as $key => $value):
+echo '<tr><td><input type="text" name="bills[]" value="'.$value.'" /> <a class="delete" href="#">Delete</a></td></tr>';
+endforeach;
+echo '<tr><td><br/><a class="addBill" href="#">Add Bill</a><br/><br/><br/></td></tr>';
+echo '</table><br/><hr/><br/>';
+echo '<center><input type="submit" value="Save Classifications" /></center>';
 include('../footer.php');
 ?>
-<body>
+<script>
+$(document).ready(function() {
+	$('table').on("click",".delete", function(e){ //user click on remove text
+		e.preventDefault();
+		$(this).parent().parent().remove();
+	})	
+	$('table').on("click",".addCat", function(e){
+		e.preventDefault();
+		$(this).parent().parent().parent().append('<tr><td><br/><a class="addCat" href="#">Add Category</a><br/><br/><br/><br/></td></tr>');
+		$(this).parent().html( '<input type="text" name="categories[]" value="" /> <a class="delete" href="#">Delete</a>');
+	});
+	$('table').on("click",".addBill", function(e){
+		e.preventDefault();
+		$(this).parent().parent().parent().append('<tr><td><br/><a class="addBill" href="#">Add Bill</a><br/><br/><br/><br/></td></tr>');
+		$(this).parent().html( '<input type="text" name="bills[]" value="" /> <a class="delete" href="#">Delete</a>');
+	});
+});
+</script>
 </body>
 </html>
