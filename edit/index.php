@@ -29,6 +29,7 @@ $bills = explode (",", $row['bills']);
 	if(isset($_POST["edit"])) {
   		if(isset($_POST['uid'])){
 			$date = $_POST['uid'];
+			$type = $_POST['type'];
 			$sql = "SELECT * FROM `$username` WHERE `uid` = '$date'";
 			$result = mysqli_query($conn, $sql);
 			$row = mysqli_fetch_assoc($result);
@@ -69,6 +70,16 @@ endforeach;
 ?>
 </select>
 </td></tr>
+<tr><td align="center">
+<select name="type">
+<option>Tracking?</option>
+<option 
+<?php if($type == 0){echo 'selected ';}?>
+value="0">This is payment.</option>
+<option 
+<?php if($type == 1){echo 'selected ';}?>
+value="1">I owe this.</option>
+</select>
 </td></tr>
 <tr><td align="center"><input type="submit" name="update" value="Update!" /></td></tr>
 </form>

@@ -23,7 +23,6 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
-$debt = explode (",", $row['debt']);
 ?>
 <center><strong>You are about to add a record.</strong></center><br/>
 <table border="1" cellpadding="10" align="center">
@@ -59,6 +58,12 @@ echo '<option value="'.$value.'">'.$value.'</option>';
 endforeach;
 ?>
 </select>
+</td></tr>
+<tr><td  align="center">
+<select name="type">
+<option>Tracking?</option>
+<option value="0">This is a payment.</option>
+<option value="1">I owe this.</option>
 </td></tr>
 <tr><td align="center"><input type="submit" name="add" value="Add!" /></td></tr>
 </form>

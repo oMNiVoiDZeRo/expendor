@@ -138,13 +138,19 @@ echo 'No expenses to display.<br/>';
 echo '</td></tr></table>';
 } else {
 echo '<table id="expenses" border="1" cellpadding="10" align="center">';
-echo '<tr><td align="center"><strong>When</strong></td><td><strong>Category</strong></td><td align="center"><strong>Who</strong></td><td align="center"><strong>Amount</strong></td><td align="center"><strong>Bill</strong></td><td></td></tr>';
+echo '<tr><td align="center"><strong>When</strong></td><td><strong>Category</strong></td><td align="center"><strong>Who</strong></td><td align="center"><strong>Amount</strong></td><td align="center"><strong>Bill</strong></td><td><strong>Tracking</strong></td><td></td></tr>';
 echo'<tbody>';
 foreach($result as $row){
 $UID = $row['UID'];
+$type = $row['Type'];
+if($type == 0){
+	$typeMessage = "Payment.";
+} else {
+	$typeMessage = "Debt.";
+}
 if($UID != 1){
 $UID = 'UID';}
-echo '<tr><td class="x"><form action="edit/" method="post"><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . '$' . number_format($row['Amount'], 2, '.', ',') . '</td><td>' . $row['Bill'] . '</td><td><input type="submit" name="edit" value="Edit"/><input type="submit" name="delete" value="Delete"/></form></td></tr>';
+echo '<tr><td class="x"><form action="edit/" method="post"><input type="hidden" name="type" value="' . $row['Type'] . '" /><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . '$' . number_format($row['Amount'], 2, '.', ',') . '</td><td>' . $row['Bill'] . '</td><td>' . $typeMessage . '</td><td><input type="submit" name="edit" value="Edit"/><input type="submit" name="delete" value="Delete"/></form></td></tr>';
 # Add edit button that allows changing category and bill classification with existing option to save unchanged or cancel.
 }
 echo '</tbody></table><br/>';
