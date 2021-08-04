@@ -147,13 +147,7 @@ echo '<tr>';
 	
 foreach($bills as $key => $value):
 if ($value == 'This is not a bill.') continue;
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND MONTH(UID) = MONTH(CURRENT_DATE())";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-$paidBill = $row['value_sum'];
-echo '<th ';
-if($paidBill > 0){echo 'class="paid"';}
-echo ' align="center"><strong>'.$value.'</th>';
+echo '<th align="center"><strong>'.$value.'</th>';
 endforeach;
 	
 echo '</tr>';
@@ -161,11 +155,13 @@ echo '<tr>';
 	
 foreach($bills as $key => $value):
 if ($value == 'This is not a bill.') continue;
-echo '<td>';
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $paid = $row['value_sum'];
+echo '<td ';
+if($paid > 0){echo 'class="paid"';}
+echo ' >';
 
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '1' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
