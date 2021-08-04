@@ -60,8 +60,8 @@ if(isset($_POST["update"])) {
 	if(mysqli_query($conn, $sql)){
 		echo '<center><p><strong>Expense successfully updated.</strong></p></center>';
 		echo '<table border="1" cellpadding="10" align="center">';
-		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Debt</strong></th></tr>';
-		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $bill . '</td></tr>';
+		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th></tr>';
+		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td></tr>';
 		echo '</table>';
 	} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 }
