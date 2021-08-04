@@ -49,7 +49,7 @@ if(isset($_POST["add"])) {
 	if(mysqli_query($conn, $sql)){
 		echo '<center><p><strong>Expense successfully recorded.</strong></p></center>';
 		echo '<table border="1" cellpadding="10" align="center">';
-		echo '<tr><td align="center"><strong>Datetime</strong></td><td align="center"><strong>Category</strong></td><td align="center"><strong>Who</strong></td><td align="center"><strong>Amount</strong></td><td align="center"><strong>Bill</strong></td><td><strong>Type</strong></td></tr>';
+		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th></tr>';
 		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td></tr>';
 		echo '</table>';
 	} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
@@ -60,14 +60,14 @@ if(isset($_POST["update"])) {
 	if(mysqli_query($conn, $sql)){
 		echo '<center><p><strong>Expense successfully updated.</strong></p></center>';
 		echo '<table border="1" cellpadding="10" align="center">';
-		echo '<tr><td align="center"><strong>Datetime</strong></td><td align="center"><strong>Category</strong></td><td align="center"><strong>Who</strong></td><td align="center"><strong>Amount</strong></td><td align="center"><strong>Bill</strong></td><td><strong>Debt</strong></td></tr>';
+		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Debt</strong></th></tr>';
 		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $bill . '</td></tr>';
 		echo '</table>';
 	} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 }
 	
 echo '<br/>';
-echo '<center><a href="../">Dashboard</a></center>';
+echo '<center><a href="../dashboard/">Dashboard</a></center>';
 include('../footer.php');
 } else {
 echo '<center>You submitted an incomplete record.</center><br/>';
