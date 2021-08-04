@@ -23,6 +23,7 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
+$debt = explode (",", $row['debt']);
 ?>
 <center><strong>You are about to add a record.</strong></center><br/>
 <table border="1" cellpadding="10" align="center">
@@ -42,8 +43,14 @@ echo '<option value="'.$value.'">'.$value.'</option>';
 endforeach;
 ?>
 </select>
-<input type="text" name="who" placeholder="Who?" /><br/>
-<input type="text" name="amount" placeholder="Amount?" /><br/>
+</td></tr>
+<tr><td align="center">
+<input type="text" name="who" placeholder="Who?" />
+</td></tr>
+<tr><td  align="center">
+<input type="text" name="amount" placeholder="Amount?" />
+</td></tr>
+<tr><td  align="center">
 <select name="bill">
 <option>Is this a bill?</option>
 <?php

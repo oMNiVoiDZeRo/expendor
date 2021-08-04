@@ -42,6 +42,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			echo '<center><p><strong>Bills successfully updated.</strong></p></center>';
 		} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 	}
+	
+	if(!isset($_POST["debt"])){
+		echo "You don't have any debt classifications.<br/>";
+	} else {
+		$debt = mysqli_real_escape_string($conn, implode(',', $_POST["debt"]));
+		$sql = "UPDATE `users` SET `debt`='$debt' WHERE `username` = '$username'";
+		if(mysqli_query($conn, $sql)){
+			echo '<center><p><strong>Debt successfully updated.</strong></p></center>';
+		} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
+	}
+
 	echo '<br/>';
 }	
 
@@ -50,6 +61,7 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
+$debt = explode (",", $row['debt']);
 echo '<form action=' . htmlspecialchars($_SERVER["PHP_SELF"]) . ' method="post">';
 echo '<table class="custom categories" align="center">';
 echo '<tr><td><center><strong>Customize your categories:</strong></center><hr/></td></tr>';
@@ -65,7 +77,7 @@ echo '<tr><td><input type="text" name="bills[]" value="'.$value.'" /> <a class="
 endforeach;
 echo '<tr><td><br/><a class="addBill" href="#">Add Bill</a><br/><br/><br/></td></tr>';
 echo '</table><br/><hr/><br/>';
-echo '<center><input type="submit" value="Save Bills" /></center></form>';
+echo '<center><input type="submit" value="Save Classifications" /></center></form>';
 echo '<br/>';
 echo '<center><a href="../">Dashboard</a></center>';
 include('../footer.php');
@@ -85,6 +97,11 @@ $(document).ready(function() {
 		e.preventDefault();
 		$(this).parent().parent().parent().append('<tr><td><br/><a class="addBill" href="#">Add Bill</a><br/><br/><br/><br/></td></tr>');
 		$(this).parent().html( '<input type="text" name="bills[]" value="" /> <a class="delete" href="#">Delete</a>');
+	});
+	$('table').on("click",".addDebt", function(e){
+		e.preventDefault();
+		$(this).parent().parent().parent().append('<tr><td><br/><a class="addDebt" href="#">Add Debt</a><br/><br/><br/><br/></td></tr>');
+		$(this).parent().html( '<input type="text" name="debt[]" value="" /> <a class="delete" href="#">Delete</a>');
 	});
 });
 </script>

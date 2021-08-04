@@ -50,8 +50,14 @@ echo ' value="'.$value.'">'.$value.'</option>';
 endforeach;
 ?>
 </select>
+</td></tr>
+<tr><td align="center">
 <input type="text" name="who" placeholder="Who?" value="<?php echo $row['Who']; ?>" /><br/>
+</td></tr>
+<tr><td align="center">
 <input type="text" name="amount" placeholder="Amount?" value="<?php echo $row['Amount']; ?>" /><br/>
+</td></tr>
+<tr><td align="center">
 <select name="bill">
 <option>Bill Classification?</option>
 <?php
@@ -62,6 +68,7 @@ echo ' value="'.$value.'">'.$value.'</option>';
 endforeach;
 ?>
 </select>
+</td></tr>
 </td></tr>
 <tr><td align="center"><input type="submit" name="update" value="Update!" /></td></tr>
 </form>

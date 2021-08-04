@@ -31,7 +31,8 @@ $sql = "SELECT * FROM `users` WHERE `username` = '$username'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
-$bills = explode (",", $row['bills']);	
+$bills = explode (",", $row['bills']);
+$debt = explode(",", $row['debt']);
 
 echo '<center><strong>Expenses All Time</strong></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
