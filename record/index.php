@@ -30,7 +30,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </ul>
 </header>
 <?php
-if(isset($_POST['date']) && $_POST['category'] != "Category?" && $_POST['who'] != "" && $_POST['amount'] != "" && $_POST['bill'] != "Is this a bill?"){
+if(isset($_POST['date']) && $_POST['category'] != "Category?" && $_POST['who'] != "" && $_POST['amount'] != "" && $_POST['bill'] != "Is this a bill?" && $_POST['type'] != "Tracking?"){
 include('../header.php');
 $date = mysqli_real_escape_string($conn, $_POST['date']);
 $category = mysqli_real_escape_string($conn, $_POST['category']);
@@ -38,6 +38,7 @@ $who = mysqli_real_escape_string($conn, $_POST['who']);
 $amount = mysqli_real_escape_string($conn, $_POST['amount']);
 $bill = mysqli_real_escape_string($conn, $_POST['bill']);
 $type = mysqli_real_escape_string($conn, $_POST['type']);
+$currency = mysqli_real_escape_string($conn, $_POST['currency']);
 if($type == 0){
 	$typeMessage = "Payment.";
 } else {
@@ -45,23 +46,23 @@ if($type == 0){
 }
 	
 if(isset($_POST["add"])) {
-	$sql = "INSERT INTO `$username` (uid, category, who, amount, bill, type) VALUES ('$date', '$category', '$who', '$amount', '$bill', '$type')";
+	$sql = "INSERT INTO `$username` (uid, category, who, amount, currency, bill, type) VALUES ('$date', '$category', '$who', '$amount', '$currency', '$bill', '$type')";
 	if(mysqli_query($conn, $sql)){
 		echo '<center><p><strong>Expense successfully recorded.</strong></p></center>';
 		echo '<table border="1" cellpadding="10" align="center">';
-		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th></tr>';
-		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td></tr>';
+		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th></tr>';
+		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td></tr>';
 		echo '</table>';
 	} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 }
 	
 if(isset($_POST["update"])) {
-	$sql = "UPDATE `$username` SET category = '$category', who = '$who', amount = '$amount', bill = '$bill' WHERE uid = '$date'";
+	$sql = "UPDATE `$username` SET category = '$category', who = '$who', amount = '$amount', currency = '$currency', bill = '$bill' WHERE uid = '$date'";
 	if(mysqli_query($conn, $sql)){
 		echo '<center><p><strong>Expense successfully updated.</strong></p></center>';
 		echo '<table border="1" cellpadding="10" align="center">';
-		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th></tr>';
-		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td></tr>';
+		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th></tr>';
+		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td></tr>';
 		echo '</table>';
 	} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 }

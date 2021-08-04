@@ -38,6 +38,7 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
+$currencies = explode (",", $row['currencies']);
 
 	if(isset($_POST["edit"])) {
   		if(isset($_POST['uid'])){
@@ -70,6 +71,18 @@ endforeach;
 </td></tr>
 <tr><td align="center">
 <input type="text" name="amount" placeholder="Amount?" value="<?php echo $row['Amount']; ?>" /><br/>
+</td></tr>
+<tr><td align="center">
+<select name="currency">
+<option>Currency?</option>
+<?php
+foreach($currencies as $key => $value):
+echo '<option ';
+if($_POST['currency'] == $value){echo 'selected';}
+echo ' value="'.$value.'">'.$value.'</option>';
+endforeach;
+?>
+</select>
 </td></tr>
 <tr><td align="center">
 <select name="bill">

@@ -36,6 +36,7 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
+$currencies = explode (",", $row['currencies']);
 ?>
 <center><strong>You are about to add a record.</strong></center><br/>
 <table border="1" cellpadding="10" align="center">
@@ -61,6 +62,16 @@ endforeach;
 </td></tr>
 <tr><td  align="center">
 <input type="text" name="amount" placeholder="Amount?" />
+</td></tr>
+<tr><td  align="center">
+<select name="currency">
+<option>What currency?</option>
+<?php
+foreach($currencies as $key => $value):
+echo '<option value="'.$value.'">'.$value.'</option>';
+endforeach;
+?>
+</select>
 </td></tr>
 <tr><td  align="center">
 <select name="bill">

@@ -46,135 +46,147 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
-// $currencies = explode (",", $row['currencies']);
-	
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Income' AND `Type` = '0'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-$income = $row['value_sum'];
-
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` != 'Income' AND `Type` = '0'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-$outcome = $income - $row['value_sum'];
-	
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` != 'Income' AND `Type` = '1'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-$outcome = $outcome - $row['value_sum'];
+$currencies = explode (",", $row['currencies']);
 
 echo '<center><h2>Net Tracking</h2></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
-echo '<th align="center" width="50%"><strong>Income</strong></th>';
-echo '<th align="center" width="50%"><strong>Outcome</strong></th>';
+echo '<th align="center" width="10%">Currency</th>';
+echo '<th align="center" width="45%"><strong>Income</strong></th>';
+echo '<th align="center" width="45%"><strong>Outcome</strong></th>';
 echo '</tr>';
+
+foreach($currencies as $key => $value):
 echo '<tr>';
-echo '<td align="center">' . numfmt_format_currency($fmt, $income, "USD") . '</td>';
-echo '<td align="center">' . numfmt_format_currency($fmt, $outcome, "USD") . '</td>';
-echo '</tr>';
-echo '</table><br/><hr/><br/><br/>';
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Income' AND `Type` = '0' AND `Currency` = '$value'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$income = $row['value_sum'];
+
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` != 'Income' AND `Type` = '0' AND `Currency` = '$value'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$outcome = $income - $row['value_sum'];
 	
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` != 'Income' AND `Type` = '1' AND `Currency` = '$value'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$outcome = $outcome - $row['value_sum'];
+echo '<td align="right">' . $value . '</td>';
+echo '<td align="center">' . numfmt_format_currency($fmt, $income, $value) . '</td>';
+echo '<td align="center">' . numfmt_format_currency($fmt, $outcome, $value) . '</td>';	
+echo '</tr>';
+endforeach;
+
+echo '</table><br/><hr/><br/><br/>';
 echo '<center><h2>Expenses All Time</h2></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
+
 echo '<tr>';
-	
+echo '<th align="center" width="10%"><strong>Currency</strong></th>';
 foreach($categories as $key => $value):
 echo '<th align="center"><strong>'.$value.'</th>';
 endforeach;
-	
 echo '</tr>';
+	
+foreach($currencies as $key => $currency):
 echo '<tr>';
-
+echo '<td align="right">' . $currency . '</td>';
 foreach($categories as $key => $value):
 echo '<td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' ";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND `Currency` = '$currency'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-echo numfmt_format_currency($fmt, $row['value_sum'], "USD");
+echo numfmt_format_currency($fmt, $row['value_sum'], $currency);
 echo '</td>';
 endforeach;
-	
 echo '</tr>';
+endforeach;
+	
 echo '</table><br/><hr/><br/><br/>';
-
 echo '<center><h2>Expenses This Year</h2></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
-echo '<tr>';
 	
+echo '<tr>';
+echo '<th align="center" width="10%"><strong>Currency</strong></th>';
 foreach($categories as $key => $value):
 echo '<th align="center"><strong>'.$value.'</th>';
 endforeach;
-	
 echo '</tr>';
-echo '<tr>';
 	
+foreach($currencies as $key => $currency):
+echo '<tr>';
+echo '<td align="right">' . $currency . '</td>';
 foreach($categories as $key => $value):
 echo '<td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND YEAR(UID) = YEAR(CURRENT_DATE())";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND YEAR(UID) = YEAR(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-echo numfmt_format_currency($fmt, $row['value_sum'], "USD");
+echo numfmt_format_currency($fmt, $row['value_sum'], $currency);
 echo '</td>';
 endforeach;
-	
 echo '</tr>';
+endforeach;
+	
 echo '</table><br/><hr/><br/><br/>';
-
 echo '<center><h2>Expenses This Month</h2></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
-echo '<tr>';
 	
+echo '<tr>';
+echo '<th align="center" width="10%"><strong>Currency</strong></th>';
 foreach($categories as $key => $value):
 echo '<th align="center"><strong>'.$value.'</th>';
 endforeach;
-	
 echo '</tr>';
+
+foreach($currencies as $key => $currency):
 echo '<tr>';
-	
+echo '<td align="right">' . $currency . '</td>';
 foreach($categories as $key => $value):
 echo '<td>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-echo numfmt_format_currency($fmt, $row['value_sum'], "USD");
+echo numfmt_format_currency($fmt, $row['value_sum'], $currency);
 echo '</td>';
 endforeach;
 echo '</tr>';
+endforeach;
+	
 echo '</table><br/><hr/><br/><br/>';
-
 echo '<center><h2>Monthly Bill Tracking</h2></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
-echo '<tr>';
 	
+echo '<tr>';
+echo '<th align="center" width="10%"><strong>Currency</strong></th>';
 foreach($bills as $key => $value):
 if ($value == 'This is not a bill.') continue;
 echo '<th align="center"><strong>'.$value.'</th>';
 endforeach;
-	
 echo '</tr>';
+
+foreach($currencies as $key => $currency):
 echo '<tr>';
-	
+echo '<td align="right">' . $currency . '</td>';
 foreach($bills as $key => $value):
 if ($value == 'This is not a bill.') continue;
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $paid = $row['value_sum'];
 echo '<td ';
 if($paid > 0){echo 'class="paid"';}
 echo ' >';
-
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '1' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '1' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $owed = $row['value_sum'];
-
-echo numfmt_format_currency($fmt, (-$owed + $paid), "USD");
+echo numfmt_format_currency($fmt, (-$owed + $paid), $currency);
 echo '</td>';
 endforeach;
-	
 echo '</tr>';
+endforeach;
+	
 echo '</table><br/><hr/><br/><br/>';
 
 echo '<center><h2>Expense Log</h2></center><br/>';
@@ -199,7 +211,7 @@ if($type == 0){
 }
 if($UID != 1){
 $UID = 'UID';}
-echo '<tr><td class="x"><form action="../edit/" method="post"><input type="hidden" name="type" value="' . $row['Type'] . '" /><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . numfmt_format_currency($fmt, $row['Amount'], "USD") . '</td><td>' . $row['Bill'] . '</td><td>' . $typeMessage . '</td><td><input type="submit" name="edit" value="Edit"/><input type="submit" name="delete" value="Delete"/></form></td></tr>';
+echo '<tr><td class="x"><form action="../edit/" method="post"><input type="hidden" name="currency" value="' . $row['Currency'] . '" /><input type="hidden" name="type" value="' . $row['Type'] . '" /><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . numfmt_format_currency($fmt, $row['Amount'], $row['Currency']) . '</td><td>' . $row['Bill'] . '</td><td>' . $typeMessage . '</td><td><input type="submit" name="edit" value="Edit"/><input type="submit" name="delete" value="Delete"/></form></td></tr>';
 }
 echo '</tbody></table><br/>';
 
