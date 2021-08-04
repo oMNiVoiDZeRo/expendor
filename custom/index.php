@@ -59,13 +59,15 @@ endforeach;
 echo '<tr><td><br/><a class="addCat" href="#">Add Category</a><br/><br/><br/></td></tr>';
 echo '</table><br/><hr/><br/>';
 echo '<table class="custom bills" align="center">';
-echo '<tr><td><center><strong>Customize your bill classifications:</strong></center><hr/></td></tr>';
+echo '<tr><td><center><strong>Customize your bills:</strong></center><hr/></td></tr>';
 foreach($bills as $key => $value):
 echo '<tr><td><input type="text" name="bills[]" value="'.$value.'" /> <a class="delete" href="#">Delete</a></td></tr>';
 endforeach;
 echo '<tr><td><br/><a class="addBill" href="#">Add Bill</a><br/><br/><br/></td></tr>';
 echo '</table><br/><hr/><br/>';
-echo '<center><input type="submit" value="Save Classifications" /></center></form>';
+echo '<center><input type="submit" value="Save Bills" /></center></form>';
+echo '<br/>';
+echo '<center><a href="../">Dashboard</a></center>';
 include('../footer.php');
 ?>
 <script>

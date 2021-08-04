@@ -38,7 +38,7 @@ $bills = explode (",", $row['bills']);
 <option>Category?</option>
 <?php
 foreach($categories as $key => $value):
-echo '<option value="'.$key.'">'.$value.'</option>';
+echo '<option value="'.$value.'">'.$value.'</option>';
 endforeach;
 ?>
 </select>
@@ -48,14 +48,16 @@ endforeach;
 <option>Is this a bill?</option>
 <?php
 foreach($bills as $key => $value):
-echo '<option value="'.$key.'">'.$value.'</option>';
+echo '<option value="'.$value.'">'.$value.'</option>';
 endforeach;
 ?>
 </select>
 </td></tr>
-<tr><td align="center"><input type="submit" value="Add!" /></td></tr>
+<tr><td align="center"><input type="submit" name="add" value="Add!" /></td></tr>
 </form>
 </table>
+<br/>
+<center><a href="../custom/">Edit Classifications</a><br/></center>
 <br/>
 <center><a href="../">Dashboard</a><br/></center>
 <?php
