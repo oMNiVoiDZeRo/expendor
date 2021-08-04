@@ -24,14 +24,20 @@ $category = mysqli_real_escape_string($conn, $_POST['category']);
 $who = mysqli_real_escape_string($conn, $_POST['who']);
 $amount = mysqli_real_escape_string($conn, $_POST['amount']);
 $bill = mysqli_real_escape_string($conn, $_POST['bill']);
+$type = mysqli_real_escape_string($conn, $_POST['type']);
+if($type == 0){
+	$typeMessage = "Payment.";
+} else {
+	$typeMessage = "Debt.";
+}
 	
 if(isset($_POST["add"])) {
-	$sql = "INSERT INTO `$username` (uid, category, who, amount, bill, debt) VALUES ('$date', '$category', '$who', '$amount', '$bill')";
+	$sql = "INSERT INTO `$username` (uid, category, who, amount, bill, type) VALUES ('$date', '$category', '$who', '$amount', '$bill', '$type')";
 	if(mysqli_query($conn, $sql)){
 		echo '<center><p><strong>Expense successfully recorded.</strong></p></center>';
 		echo '<table border="1" cellpadding="10" align="center">';
-		echo '<tr><td align="center"><strong>Datetime</strong></td><td align="center"><strong>Category</strong></td><td align="center"><strong>Who</strong></td><td align="center"><strong>Amount</strong></td><td align="center"><strong>Bill</strong></td></tr>';
-		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $bill . '</td></tr>';
+		echo '<tr><td align="center"><strong>Datetime</strong></td><td align="center"><strong>Category</strong></td><td align="center"><strong>Who</strong></td><td align="center"><strong>Amount</strong></td><td align="center"><strong>Bill</strong></td><td><strong>Type</strong></td></tr>';
+		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td></tr>';
 		echo '</table>';
 	} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 }

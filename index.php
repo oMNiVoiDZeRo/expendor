@@ -32,12 +32,35 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
+	
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Income'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$income = $row['value_sum'];
 
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` != 'Income'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$outcome = $income - $row['value_sum'];
+
+echo '<center><strong>Net Tracking</strong></center><br/>';
+echo '<table border="1" cellpadding="10" align="center">';
+echo '<tr>';
+echo '<td align="center"><strong>Income</strong></td>';
+echo '<td align="center"><strong>Outcome</strong></td>';
+echo '</tr>';
+echo '<tr>';
+echo '<td align="center">' . '$' . number_format($income, 2, '.', ',') . '</td>';
+echo '<td align="center">' . '$' . number_format($outcome, 2, '.', ',') . '</td>';
+echo '</tr>';
+echo '</table><br/><hr/><br/><br/>';
+	
 echo '<center><strong>Expenses All Time</strong></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
+if ($key == 'Income') continue;
 echo '<td align="center"><strong>'.$value.'</td>';
 endforeach;
 	
@@ -45,6 +68,7 @@ echo '</tr>';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
+if ($key == 'Income') continue;
 echo '<td>';
 #Custom categories would require a recurring loop to display all categories one at a time.
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value'";
@@ -62,6 +86,7 @@ echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
+if ($key == 'Income') continue;
 echo '<td align="center"><strong>'.$value.'</td>';
 endforeach;
 	
@@ -69,6 +94,7 @@ echo '</tr>';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
+if ($key == 'Income') continue;
 echo '<td>';
 #Custom categories would require a recurring loop to display all categories one at a time.
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND YEAR(UID) = YEAR(CURRENT_DATE())";
@@ -86,6 +112,7 @@ echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
+if ($key == 'Income') continue;
 echo '<td align="center"><strong>'.$value.'</td>';
 endforeach;
 	
@@ -93,6 +120,7 @@ echo '</tr>';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
+if ($key == 'Income') continue;
 echo '<td>';
 #Custom categories would require a recurring loop to display all categories one at a time.
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND MONTH(UID) = MONTH(CURRENT_DATE())";
