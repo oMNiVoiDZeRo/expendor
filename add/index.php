@@ -57,7 +57,7 @@ endforeach;
 </form>
 </table>
 <br/>
-<center><a href="../custom/">Edit Classifications</a><br/></center>
+<center><a href="../custom/">Edit classifications</a><br/></center>
 <br/>
 <center><a href="../">Dashboard</a><br/></center>
 <?php

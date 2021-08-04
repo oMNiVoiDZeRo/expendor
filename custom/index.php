@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	if(!isset($_POST["categories"])){
 		echo "You don't have any categories.<br/>";
 	} else {
-		$categories = implode(',', $_POST["categories"]);
+		$categories = mysqli_real_escape_string($conn, implode(',', $_POST["categories"]));
 		$sql = "UPDATE `users` SET `categories`='$categories' WHERE `username` = '$username'";
 		if(mysqli_query($conn, $sql)){
 			echo '<center><p><strong>Categories successfully updated.</strong></p></center>';
@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	if(!isset($_POST["bills"])){
 		echo "You don't have any bill classifications.<br/>";
 	} else {
-		$bills = implode(',', $_POST["bills"]);
+		$bills = mysqli_real_escape_string($conn, implode(',', $_POST["bills"]));
 		$sql = "UPDATE `users` SET `bills`='$bills' WHERE `username` = '$username'";
 		if(mysqli_query($conn, $sql)){
 			echo '<center><p><strong>Bills successfully updated.</strong></p></center>';
