@@ -51,8 +51,8 @@ $outcome = $outcome - $row['value_sum'];
 echo '<center><h2>Net Tracking</h2></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
-echo '<td align="center"><strong>Income</strong></td>';
-echo '<td align="center"><strong>Outcome</strong></td>';
+echo '<th align="center"><strong>Income</strong></th>';
+echo '<th align="center"><strong>Outcome</strong></th>';
 echo '</tr>';
 echo '<tr>';
 echo '<td align="center">' . '$' . number_format($income, 2, '.', ',') . '</td>';
@@ -65,7 +65,7 @@ echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
-echo '<td align="center"><strong>'.$value.'</td>';
+echo '<th align="center"><strong>'.$value.'</th>';
 endforeach;
 	
 echo '</tr>';
@@ -88,7 +88,7 @@ echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
-echo '<td align="center"><strong>'.$value.'</td>';
+echo '<th align="center"><strong>'.$value.'</th>';
 endforeach;
 	
 echo '</tr>';
@@ -111,7 +111,7 @@ echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
 foreach($categories as $key => $value):
-echo '<td align="center"><strong>'.$value.'</td>';
+echo '<th align="center"><strong>'.$value.'</th>';
 endforeach;
 	
 echo '</tr>';
@@ -134,7 +134,7 @@ echo '<tr>';
 	
 foreach($bills as $key => $value):
 if ($value == 'This is not a bill.') continue;
-echo '<td align="center"><strong>'.$value.'</td>';
+echo '<th align="center"><strong>'.$value.'</th>';
 endforeach;
 	
 echo '</tr>';
@@ -170,7 +170,7 @@ echo 'No expenses to display.<br/>';
 echo '</td></tr></table>';
 } else {
 echo '<table id="expenses" border="1" cellpadding="10" align="center">';
-echo '<tr><td align="center"><strong>When</strong></td><td><strong>Category</strong></td><td align="center"><strong>Who</strong></td><td align="center"><strong>Amount</strong></td><td align="center"><strong>Bill</strong></td><td><strong>Tracking</strong></td><td></td></tr>';
+echo '<tr><th align="center"><strong>When</strong></th><th><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Tracking</strong></th><th></th></tr>';
 echo'<tbody>';
 foreach($result as $row){
 $UID = $row['UID'];

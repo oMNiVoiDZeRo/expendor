@@ -1,5 +1,7 @@
-body {
-	font-family: sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
+html body {
+	font-family: 'Roboto', sans-serif;
 	font-size: 12px;
 }
 
@@ -51,4 +53,10 @@ table.custom tr td a.delete {
 	position: absolute;
 	top: 50%;
 	transform: translate(-80px,-50%);
+}
+
+table th {
+	background: #000;
+	color: #fff;
+	font-size: 24px;
 }
