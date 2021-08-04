@@ -6,5 +6,5 @@ $user = 'root';
 $pass = '';
 $database = 'expendor';
 $conn = mysqli_connect($server, $user, $pass, $database);
-if($conn == true){echo '<center><em>Database Successfully Connected.</em></center>';}	
+if($conn == true){echo '<!--Database Successfully Connected.-->';}	
 ?>	
