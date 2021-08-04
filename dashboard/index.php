@@ -175,7 +175,7 @@ endforeach;
 echo '</tr>';
 echo '</table><br/><hr/><br/><br/>';
 
-echo '<center><h2>Expenses Log</h2></center><br/>';
+echo '<center><h2>Expense Log</h2></center><br/>';
 $sql = "SELECT * FROM `$username` ORDER BY UID DESC";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
