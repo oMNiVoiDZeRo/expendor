@@ -4,13 +4,12 @@ body {
 }
 
 table {
-	max-width: 50%;
-	min-width: 800px;
+	 width: 100%;
 	text-align: center;
 }
 
 hr {
-	width: 800px;
+	width: 100%;
 }
 
 input[type=checkbox]{
@@ -22,7 +21,7 @@ input[type=text], input[type=password], select, select option {
 	box-sizing: border-box;
 	width: 100%;
 	margin: 5px 0;
-	padding: 4%;
+	padding: 1%;
 	text-align: left;
 }
 

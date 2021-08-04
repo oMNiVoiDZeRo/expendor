@@ -12,7 +12,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <html>
 <head>
 <title>Expendor</title>
-<link href="../style.css" rel="stylesheet" />
+<link href="style.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -48,7 +48,7 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $outcome = $outcome - $row['value_sum'];
 
-echo '<center><strong>Net Tracking</strong></center><br/>';
+echo '<center><h2>Net Tracking</h2></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 echo '<td align="center"><strong>Income</strong></td>';
@@ -60,7 +60,7 @@ echo '<td align="center">' . '$' . number_format($outcome, 2, '.', ',') . '</td>
 echo '</tr>';
 echo '</table><br/><hr/><br/><br/>';
 	
-echo '<center><strong>Expenses All Time</strong></center><br/>';
+echo '<center><h2>Expenses All Time</h2></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
@@ -83,7 +83,7 @@ endforeach;
 echo '</tr>';
 echo '</table><br/><hr/><br/><br/>';
 
-echo '<center><strong>Expenses This Year</strong></center><br/>';
+echo '<center><h2>Expenses This Year</h2></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
@@ -106,7 +106,7 @@ endforeach;
 echo '</tr>';
 echo '</table><br/><hr/><br/><br/>';
 
-echo '<center><strong>Expenses This Month</strong></center><br/>';
+echo '<center><h2>Expenses This Month</h2></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
@@ -128,7 +128,7 @@ endforeach;
 echo '</tr>';
 echo '</table><br/><hr/><br/><br/>';
 
-echo '<center><strong>Monthly Bill Tracking</strong></center><br/>';
+echo '<center><h2>Monthly Bill Tracking</h2></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
@@ -160,7 +160,7 @@ endforeach;
 echo '</tr>';
 echo '</table><br/><hr/><br/><br/>';
 
-echo '<center><strong>Expenses Log</strong></center><br/>';
+echo '<center><h2>Expenses Log</h2></center><br/>';
 $sql = "SELECT * FROM `$username` ORDER BY UID DESC";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
@@ -192,11 +192,12 @@ echo '<br/>';
 echo '<center><a href="add/">Add expense to database.</a></center>';
 echo '<br/>';
 echo '<center><a href="custom/">Edit classifications</a><br/></center>';
-echo '<br/><br/>';
+echo '<br/>';
 } else {
 echo '<br/>';
 echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 ?>
+	<hr/><br/>
 	<table align="center">
 	<tr><td>
     <p>
