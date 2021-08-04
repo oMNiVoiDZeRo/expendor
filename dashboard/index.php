@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login/");
+    header("location: ../login/");
     exit;
 } else {
 	$username = $_SESSION["username"]; 
@@ -147,7 +147,13 @@ echo '<tr>';
 	
 foreach($bills as $key => $value):
 if ($value == 'This is not a bill.') continue;
-echo '<th align="center"><strong>'.$value.'</th>';
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$paidBill = $row['value_sum'];
+echo '<th ';
+if($paidBill > 0){echo 'class="paid"';}
+echo ' align="center"><strong>'.$value.'</th>';
 endforeach;
 	
 echo '</tr>';

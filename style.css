@@ -57,6 +57,11 @@ table.custom tr td a.delete {
 	transform: translate(-80px,-50%);
 }
 
+table tr th.paid {
+	background: #fff;
+	color: #000;
+}
+
 table th {
 	background: #000;
 	color: #fff;
