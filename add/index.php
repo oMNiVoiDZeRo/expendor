@@ -20,7 +20,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body>
 <?php
 include('../header.php');
-# str_getcsv to get categories and bills from user table in database.
 $sql = "SELECT * FROM `users` WHERE `username` = '$username'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
