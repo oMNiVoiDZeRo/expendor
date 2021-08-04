@@ -33,15 +33,20 @@ $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
 	
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Income'";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Income' AND `Type` = '0'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $income = $row['value_sum'];
 
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` != 'Income'";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` != 'Income' AND `Type` = '0'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $outcome = $income - $row['value_sum'];
+	
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` != 'Income' AND `Type` = '1'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$outcome = $outcome - $row['value_sum'];
 
 echo '<center><strong>Net Tracking</strong></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
