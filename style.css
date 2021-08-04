@@ -60,3 +60,8 @@ table th {
 	color: #fff;
 	font-size: 24px;
 }
+
+div.wrapper {
+	text-align: center;
+	margin: 0 auto;
+}

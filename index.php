@@ -22,7 +22,7 @@ include('header.php');
 ?>
 	<table align="center">
 	<tr><td>
-	<h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to your dashboard.</h1>
+	<h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to your Expendor dashboard.</h1>
 	</td></tr>
 	</table>
 <?php
