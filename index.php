@@ -68,8 +68,7 @@ echo '<tr>';
 
 foreach($categories as $key => $value):
 echo '<td>';
-#Custom categories would require a recurring loop to display all categories one at a time.
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value'";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' ";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 echo '$' . number_format($row['value_sum'], 2, '.', ',');
@@ -92,8 +91,7 @@ echo '<tr>';
 	
 foreach($categories as $key => $value):
 echo '<td>';
-#Custom categories would require a recurring loop to display all categories one at a time.
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND YEAR(UID) = YEAR(CURRENT_DATE())";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND YEAR(UID) = YEAR(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 echo '$' . number_format($row['value_sum'], 2, '.', ',');
@@ -116,8 +114,7 @@ echo '<tr>';
 	
 foreach($categories as $key => $value):
 echo '<td>';
-#Custom categories would require a recurring loop to display all categories one at a time.
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 echo '$' . number_format($row['value_sum'], 2, '.', ',');
@@ -131,6 +128,7 @@ echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 	
 foreach($bills as $key => $value):
+if ($value == 'This is not a bill.') continue;
 echo '<td align="center"><strong>'.$value.'</td>';
 endforeach;
 	
@@ -138,12 +136,19 @@ echo '</tr>';
 echo '<tr>';
 	
 foreach($bills as $key => $value):
+if ($value == 'This is not a bill.') continue;
 echo '<td>';
-#Custom categories would require a recurring loop to display all categories one at a time.
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-echo '$' . number_format($row['value_sum'], 2, '.', ',');
+$paid = $row['value_sum'];
+
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '1' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$owed = $row['value_sum'];
+	
+echo '$' . number_format((-$owed + $paid), 2, '.', ',');
 echo '</td>';
 endforeach;
 	
