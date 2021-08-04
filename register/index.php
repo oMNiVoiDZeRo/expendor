@@ -67,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_close($stmt);
         }
 
-        $sql = "CREATE TABLE IF NOT EXISTS `$username` (`UID` datetime NOT NULL, `Category` text NOT NULL, `Who` text NOT NULL, `Amount` text NOT NULL, `Bill` text NOT NULL, PRIMARY KEY (`UID`)) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+        $sql = "CREATE TABLE IF NOT EXISTS `$username` (`UID` datetime NOT NULL, `Category` text NOT NULL, `Who` text NOT NULL, `Amount` text NOT NULL, `Bill` text NOT NULL, PRIMARY KEY (`UID`), `Type` tinyint(1) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
          
         if($stmt = mysqli_prepare($conn, $sql)){
             if(mysqli_stmt_execute($stmt)){
