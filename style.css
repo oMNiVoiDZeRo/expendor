@@ -3,6 +3,8 @@
 html body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 12px;
+	background: url('background.jpg') center center no-repeat #fff fixed;
+	background-size: cover;
 }
 
 table {
