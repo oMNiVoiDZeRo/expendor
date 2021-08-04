@@ -201,8 +201,8 @@ echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 	<table align="center">
 	<tr><td>
     <p>
-        <a href="reset/" class="btn btn-warning">Reset Your Password</a>
-        <a href="logout/" class="btn btn-danger ml-3">Sign Out of Your Account</a>
+        <a href="reset/" class="btn btn-warning">Reset Password</a>
+        <a href="logout/" class="btn btn-danger ml-3">Logout</a>
     </p>
 	</td></tr>
 	</table>
