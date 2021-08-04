@@ -18,13 +18,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body>
 <?php
 include('../header.php');
+	
+	
+	
 $sql = "SELECT * FROM `users` WHERE `username` = '$username'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
 ?>
-<center><strong>You are about to add a record.</strong></center><br/>
+<center><strong>You are about to edit a record.</strong></center><br/>
 <table border="1" cellpadding="10" align="center">
 <form name="record" action="../record/" method="post">
 <tr><td align="center"><input type="text" name="date" value="<?php
