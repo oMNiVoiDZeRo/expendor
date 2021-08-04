@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require_once "../config.php";
 
 $username = $password = $confirm_password = "";
@@ -51,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 	
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
-        $sql = "INSERT INTO users (username, password, categories, bills) VALUES (?, ?, 'Income,Food,Health,Home,Auto,Insurance,Utility,Debt,Work,Entertainment', 'Rent,Electric,Utility,Home Insurance,Health Insurance,Car Insurance,Phone,Loan,Internet,Web Hosting,Medical,This is not a bill.')";
+        $sql = "INSERT INTO users (username, password, categories, bills, currencies) VALUES (?, ?, 'Income,Food,Health,Home,Auto,Insurance,Utility,Debt,Work,Entertainment', 'Rent,Electric,Utility,Home Insurance,Health Insurance,Car Insurance,Phone,Loan,Internet,Web Hosting,Medical,This is not a bill.', 'usd')";
          
         if($stmt = mysqli_prepare($conn, $sql)){
             mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
@@ -67,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_close($stmt);
         }
 
-        $sql = "CREATE TABLE IF NOT EXISTS `$username` (`UID` datetime NOT NULL, `Category` text NOT NULL, `Who` text NOT NULL, `Amount` text NOT NULL, `Bill` text NOT NULL, PRIMARY KEY (`UID`), `Type` tinyint(1) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+        $sql = "CREATE TABLE IF NOT EXISTS `$username` (`UID` datetime NOT NULL, `Category` text NOT NULL, `Who` text NOT NULL, `Amount` int(11) NOT NULL, `Currency` text NOT NULL, `Bill` text NOT NULL, PRIMARY KEY (`UID`), `Type` tinyint(1) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
          
         if($stmt = mysqli_prepare($conn, $sql)){
             if(mysqli_stmt_execute($stmt)){
