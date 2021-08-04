@@ -5,4 +5,4 @@ An expense tracking and bill management web application.
 Login is test password is asdfasdf.
 
 # future development plans
-Debt tracking.
+Monthly debt tracking: what is owed to who and how much has been paid current month.
