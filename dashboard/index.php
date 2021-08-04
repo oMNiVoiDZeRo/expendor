@@ -12,7 +12,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <html>
 <head>
 <title>Expendor</title>
-<link href="style.css" rel="stylesheet" />
+<link href="../style.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -31,7 +31,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </ul>
 </header>
 <?php
-include('header.php');
+include('../header.php');
 ?>
 	<table align="center">
 	<tr><td>
@@ -195,7 +195,7 @@ if($type == 0){
 }
 if($UID != 1){
 $UID = 'UID';}
-echo '<tr><td class="x"><form action="edit/" method="post"><input type="hidden" name="type" value="' . $row['Type'] . '" /><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . '$' . number_format($row['Amount'], 2, '.', ',') . '</td><td>' . $row['Bill'] . '</td><td>' . $typeMessage . '</td><td><input type="submit" name="edit" value="Edit"/><input type="submit" name="delete" value="Delete"/></form></td></tr>';
+echo '<tr><td class="x"><form action="../edit/" method="post"><input type="hidden" name="type" value="' . $row['Type'] . '" /><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . '$' . number_format($row['Amount'], 2, '.', ',') . '</td><td>' . $row['Bill'] . '</td><td>' . $typeMessage . '</td><td><input type="submit" name="edit" value="Edit"/><input type="submit" name="delete" value="Delete"/></form></td></tr>';
 # Add edit button that allows changing category and bill classification with existing option to save unchanged or cancel.
 }
 echo '</tbody></table><br/>';
@@ -214,13 +214,13 @@ echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 	<table align="center">
 	<tr><td>
     <p>
-        <a href="reset/" class="btn btn-warning">Reset Password</a>
-        <a href="logout/" class="btn btn-danger ml-3">Logout</a>
+        <a href="../reset" class="btn btn-warning">Reset Password</a>
+        <a href="../logout" class="btn btn-danger ml-3">Logout</a>
     </p>
 	</td></tr>
 	</table>
 <?php
-include('footer.php');
+include('../footer.php');
 ?>
 <footer class="py-3 my-4">
     <p class="text-center text-muted">&copy; 2021 Expendor</p>

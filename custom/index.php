@@ -24,9 +24,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </a>
 
 <ul class="nav nav-pills">
-<li class="nav-item"><a href="http://localhost/expendor/" class="nav-link" aria-current="page">Dashboard</a></li>
+<li class="nav-item"><a href="http://localhost/expendor/dashboard/" class="nav-link">Dashboard</a></li>
 <li class="nav-item"><a href="http://localhost/expendor/add/" class="nav-link">Add Expense</a></li>
-<li class="nav-item"><a href="http://localhost/expendor/custom/" class="nav-link active">Edit Classifications</a></li>
+<li class="nav-item"><a href="http://localhost/expendor/custom/" class="nav-link active" aria-current="page">Edit Classifications</a></li>
 <li class="nav-item"><a href="http://localhost/expendor/reset/" class="nav-link">Reset Password</a></li>
 <li class="nav-item"><a href="http://localhost/expendor/logout/" class="nav-link">Logout</a></li>
 </ul>
