@@ -56,7 +56,7 @@ echo '</table>';}}
 include('../footer.php');
 ?>
 <br/>
-<center><a href="../dashboard/">Dashboard</a></center>
+<center><a class="btn btn-primary"  href="../dashboard/">Dashboard</a></center>
 <footer class="py-3 my-4">
     <p class="text-center">&copy; 2021 Expendor</p>
 </footer>

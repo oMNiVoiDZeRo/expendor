@@ -88,9 +88,9 @@ echo '</tbody></table><br/>';
 
 }
 echo '<br/>';
-echo '<center><a href="../add/">Add expense to database.</a></center>';
+echo '<center><a class="btn btn-primary" href="../add/">Add expense to database.</a></center>';
 echo '<br/>';
-echo '<center><a href="../custom/">Edit classifications</a><br/></center>';
+echo '<center><a class="btn btn-success" href="../custom/">Edit classifications</a><br/></center>';
 echo '<br/>';
 } else {
 echo '<br/>';

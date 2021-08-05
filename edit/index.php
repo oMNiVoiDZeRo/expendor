@@ -118,11 +118,11 @@ value="0">This is payment.</option>
 value="1">I owe this.</option>
 </select>
 </td></tr>
-<tr><td align="center"><input type="submit" name="update" value="Update!" /></td></tr>
+<tr><td align="center"><input class="btn btn-secondary" type="submit" name="update" value="Update!" /></td></tr>
 </form>
 </table>
 <br/>
-<center><a href="../">Dashboard</a><br/></center>
+<center><a class="btn btn-primary" href="../">Dashboard</a><br/></center>
 	
 <?php
   			}
@@ -159,11 +159,11 @@ value="1">I owe this.</option>
 <?php
   		}
 ?>
-<td align="center"><input type="submit" value="Delete!" /></td></tr>
+<td align="center"><input class="btn btn-danger" type="submit" value="Delete!" /></td></tr>
 </table>
 </form>
 <br/>
-<center><a href="../dashboard/">Dashboard</a><br/></center>
+<center><a class="btn btn-primary" href="../dashboard/">Dashboard</a><br/></center>
 <?php
 	}
 }

@@ -79,11 +79,12 @@ if(isset($_POST["update"])) {
 }
 	
 echo '<br/>';
-echo '<center><a href="../dashboard/">Dashboard</a></center>';
+echo '<center><a class="btn btn-primary" href="../dashboard/">Dashboard</a></center><br/>';
+	echo '<center><a class="btn btn-info" href="../log/">Expense Log</a><br/></center>';
 include('../footer.php');
 } else {
 echo '<center>You submitted an incomplete record.</center><br/>';
-echo '<center><a href="../add/">Fill out the record.</a></center>';}
+echo '<center><a class="btn btn-primary" href="../add/">Fill out the record.</a></center>';}
 ?>
 <footer class="py-3 my-4">
 	<p class="text-center">&copy; 2021 Expendor</p>

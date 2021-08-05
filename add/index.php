@@ -100,13 +100,15 @@ endforeach;
 <option value="0">This is a payment.</option>
 <option value="1">I owe this.</option>
 </td></tr>
-<tr><td align="center"><input type="submit" name="add" value="Add!" /></td></tr>
+<tr><td align="center"><input class="btn btn-secondary" type="submit" name="add" value="Add!" /></td></tr>
 </form>
 </table>
 <br/>
-<center><a href="../custom/">Edit classifications</a><br/></center>
+<center><a class="btn btn-success" href="../custom/">Edit classifications</a><br/></center>
 <br/>
-<center><a href="../">Dashboard</a><br/></center>
+<center><a class="btn btn-primary" href="../dashboard/">Dashboard</a><br/></center>
+<br/>
+<center><a class="btn btn-info" href="../log/">Expense log</a><br/></center>
 <?php
 include('../footer.php');
 ?>
