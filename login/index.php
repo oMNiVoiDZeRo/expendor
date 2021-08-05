@@ -79,7 +79,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; }
-        .wrapper{ width: 360px; padding: 20px; }
+        .wrapper{ position:absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 100%; padding: 20px; }
+		.wrapper input { display: block; width: 360px; margin: 0 auto; }
     </style>
 </head>
 <body>
@@ -107,9 +108,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <p>Don't have an account? <a href="../register/">Sign up now</a>.</p>
         </form>
+		<footer class="py-3 my-4">
+			<p class="text-center text-muted">&copy; 2021 Expendor</p>
+		</footer>
     </div>
-<footer class="py-3 my-4">
-    <p class="text-center text-muted">&copy; 2021 Expendor</p>
-</footer>
 </body>
 </html>

@@ -98,7 +98,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; }
-        .wrapper{ width: 360px; padding: 20px; }
+        .wrapper{ position:absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 100%; padding: 20px; }
+		.wrapper input { display: block; width: 360px; margin: 0 auto; }
     </style>
 </head>
 <body>
@@ -120,14 +121,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
 <!-- Option to select default categories and bill classifications or go through the configuration wizard. -->
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="submit" class="btn btn-primary" value="Submit"><br/>
                 <input type="reset" class="btn btn-secondary" value="Reset">
             </div>
             <p>Already have an account? <a href="../login/">Login here</a>.</p>
         </form>
+		<footer class="py-3 my-4">
+			<p class="text-center text-muted">&copy; 2021 Expendor</p>
+		</footer>
     </div>
-<footer class="py-3 my-4">
-    <p class="text-center text-muted">&copy; 2021 Expendor</p>
-</footer>
 </body>
 </html>

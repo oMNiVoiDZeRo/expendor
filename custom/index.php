@@ -32,7 +32,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <li class="nav-item"><a href="http://localhost/expendor/log/" class="nav-link">Expense Log</a></li>
 <li class="nav-item"><a href="http://localhost/expendor/add/" class="nav-link">Add Expense</a></li>
 <li class="nav-item"><a href="http://localhost/expendor/custom/" class="nav-link active" aria-current="page">Edit Classifications</a></li>
+<?php
+		if($username != 'test'){
+?>
 <li class="nav-item"><a href="http://localhost/expendor/reset/" class="nav-link">Reset Password</a></li>
+<?php
+		}
+?>
 <li class="nav-item"><a href="http://localhost/expendor/logout/" class="nav-link">Logout</a></li>
 </ul>
 </header>
