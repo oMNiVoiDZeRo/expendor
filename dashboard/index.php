@@ -44,7 +44,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <?php
 include('../header.php');
 ?>
-	<h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>! Welcome to your Expendor dashboard.</h1>
+	<h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>! Welcome to your <span>&nbsp;Expendor</span> dashboard.</h1>
 <?php
 if($conn == true){
 $fmt = numfmt_create('en_US', NumberFormatter::CURRENCY );
@@ -219,7 +219,7 @@ echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 include('../footer.php');
 ?>
 <footer class="py-3 my-4">
-    <p class="text-center text-muted">&copy; 2021 Expendor</p>
+    <p class="text-center">&copy; 2021 Expendor</p>
 </footer>
 </body>
 </html>

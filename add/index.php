@@ -111,7 +111,7 @@ endforeach;
 include('../footer.php');
 ?>
 <footer class="py-3 my-4">
-    <p class="text-center text-muted">&copy; 2021 Expendor</p>
+    <p class="text-center">&copy; 2021 Expendor</p>
 </footer>
 </body>
 </html>

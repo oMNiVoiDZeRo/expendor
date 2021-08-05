@@ -114,7 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	</form>
 </div>
 <footer class="py-3 my-4">
-    <p class="text-center text-muted">&copy; 2021 Expendor</p>
+    <p class="text-center">&copy; 2021 Expendor</p>
 </footer>
 </body>
 </html>

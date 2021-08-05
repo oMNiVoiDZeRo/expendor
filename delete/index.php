@@ -58,7 +58,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <br/>
 <center><a href="../dashboard/">Dashboard</a><br/></center>
 <footer class="py-3 my-4">
-    <p class="text-center text-muted">&copy; 2021 Expendor</p>
+    <p class="text-center">&copy; 2021 Expendor</p>
 </footer>
 </body>
 </html>
