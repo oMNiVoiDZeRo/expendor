@@ -43,7 +43,13 @@ $(document).ready( function () {
 <li class="nav-item"><a href="http://localhost/expendor/log/" class="nav-link active" aria-current="page">Expense Log</a></li>
 <li class="nav-item"><a href="http://localhost/expendor/add/" class="nav-link">Add Expense</a></li>
 <li class="nav-item"><a href="http://localhost/expendor/custom/" class="nav-link">Edit Classifications</a></li>
+<?php
+		if($username != 'test'){
+?>
 <li class="nav-item"><a href="http://localhost/expendor/reset/" class="nav-link">Reset Password</a></li>
+<?php
+		}
+?>
 <li class="nav-item"><a href="http://localhost/expendor/logout/" class="nav-link">Logout</a></li>
 </ul>
 </header>
