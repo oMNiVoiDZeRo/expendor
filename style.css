@@ -86,3 +86,9 @@ header a span {
 	width: 75%;
 	margin: 0 auto;
 }
+
+@media screen and (max-width:927px) {
+	header a span {
+		text-align: center;
+	}
+}
