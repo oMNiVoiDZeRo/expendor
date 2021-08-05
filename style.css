@@ -89,6 +89,7 @@ header a span {
 	font-family: 'Cormorant Garamond', serif;
     letter-spacing: 8px;
     text-transform: uppercase;
+	font-weight: bold;
 }
 
 #expenses_wrapper {
