@@ -44,11 +44,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <?php
 include('../header.php');
 ?>
-	<table align="center">
-	<tr><td>
 	<h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>! Welcome to your Expendor dashboard.</h1>
-	</td></tr>
-	</table>
 <?php
 if($conn == true){
 $fmt = numfmt_create('en_US', NumberFormatter::CURRENCY );
@@ -209,8 +205,6 @@ echo '<br/>';
 echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 ?>
 	<hr/><br/>
-	<table align="center">
-	<tr><td>
     <p>
 <?php
 		if($username != 'test'){
@@ -221,8 +215,6 @@ echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 ?>
         <a href="../logout" class="btn btn-danger">Logout</a>
     </p>
-	</td></tr>
-	</table>
 <?php
 include('../footer.php');
 ?>

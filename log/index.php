@@ -97,8 +97,6 @@ echo '<br/>';
 echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 ?>
 	<hr/><br/>
-	<table align="center">
-	<tr><td>
     <p>
 <?php
 		if($username != 'test'){
@@ -109,8 +107,6 @@ echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 ?>
         <a href="../logout" class="btn btn-danger">Logout</a>
     </p>
-	</td></tr>
-	</table>
 <?php
 include('../footer.php');
 ?>

@@ -61,7 +61,7 @@ $currencies = explode (",", $row['currencies']);
 ?>
 	
 <center><strong>You are about to edit a record.</strong></center><br/>
-<table border="1" cellpadding="10" align="center">
+<table id="edit" border="1" cellpadding="10" align="center">
 <form name="record" action="../record/" method="post">
 <tr><td align="center"><input type="text" name="date" value="<?php echo $date; ?>"/>
 </td></tr>

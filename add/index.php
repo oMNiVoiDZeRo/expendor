@@ -50,7 +50,7 @@ $bills = explode (",", $row['bills']);
 $currencies = explode (",", $row['currencies']);
 ?>
 <center><strong>You are about to add a record.</strong></center><br/>
-<table border="1" cellpadding="10" align="center">
+<table id="add" border="1" cellpadding="10" align="center">
 <form name="record" action="../record/" method="post">
 <tr><td align="center"><input type="text" name="date" value="<?php
 	date_default_timezone_set('America/Los_Angeles');
