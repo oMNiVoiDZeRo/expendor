@@ -90,21 +90,21 @@ echo '<form action=' . htmlspecialchars($_SERVER["PHP_SELF"]) . ' method="post">
 echo '<table class="custom categories" align="center">';
 echo '<tr><td><center><h2>Customize your categories:</h2></center><hr/></td></tr>';
 foreach($categories as $key => $value):
-echo '<tr><td><input type="text" name="categories[]" value="'.$value.'" /> <a class="delete" href="#">Delete</a></td></tr>';
+echo '<tr><td><input type="text" name="categories[]" value="'.$value.'" /> <a class="btn btn-danger delete" href="#">Delete</a></td></tr>';
 endforeach;
 echo '<tr><td><br/><a class="btn btn-success addCat" href="#">Add Category</a><br/><br/><br/></td></tr>';
 echo '</table><br/><hr/><br/>';
 echo '<table class="custom bills" align="center">';
 echo '<tr><td><center><h2>Customize your bills:</h2></center><hr/></td></tr>';
 foreach($bills as $key => $value):
-echo '<tr><td><input type="text" name="bills[]" value="'.$value.'" /> <a class="delete" href="#">Delete</a></td></tr>';
+echo '<tr><td><input type="text" name="bills[]" value="'.$value.'" /> <a class="btn btn-danger delete" href="#">Delete</a></td></tr>';
 endforeach;
 echo '<tr><td><br/><a class="btn btn-success addBill" href="#">Add Bill</a><br/><br/><br/></td></tr>';
 echo '</table><br/><hr/><br/>';
 echo '<table class="custom currencies" align="center">';
 echo '<tr><td><center><h2>Customize your currencies:</h2></center><hr/></td></tr>';
 foreach($currencies as $key => $value):
-echo '<tr><td><input type="text" name="currencies[]" value="'.$value.'" /> <a class="delete" href="#">Delete</a></td></tr>';
+echo '<tr><td><input type="text" name="currencies[]" value="'.$value.'" /> <a class="btn btn-danger delete" href="#">Delete</a></td></tr>';
 endforeach;
 echo '<tr><td><br/><a class="btn btn-success addCurrency" href="#">Add Currency</a><br/><br/><br/></td></tr>';
 echo '</table><br/><hr/><br/>';
