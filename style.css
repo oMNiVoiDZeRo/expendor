@@ -8,7 +8,7 @@ html body {
 }
 
 table {
-	 width: 100%;
+	 width: 75%;
 	text-align: center;
 }
 
@@ -65,7 +65,7 @@ table tr td.paid {
 table th {
 	background: #000;
 	color: #fff;
-	font-size: 24px;
+	font-size: 18px;
 }
 
 div.wrapper {

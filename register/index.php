@@ -68,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_close($stmt);
         }
 
-        $sql = "CREATE TABLE IF NOT EXISTS `$username` (`UID` datetime NOT NULL, `Category` text NOT NULL, `Who` text NOT NULL, `Amount` int(11) NOT NULL, `Currency` text NOT NULL, `Bill` text NOT NULL, PRIMARY KEY (`UID`), `Type` tinyint(1) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+        $sql = "CREATE TABLE IF NOT EXISTS `$username` (`UID` datetime NOT NULL, `Category` text NOT NULL, `Who` text NOT NULL, `Amount` decimal(11,2) NOT NULL, `Currency` text NOT NULL, `Bill` text NOT NULL, PRIMARY KEY (`UID`), `Type` tinyint(1) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
          
         if($stmt = mysqli_prepare($conn, $sql)){
             if(mysqli_stmt_execute($stmt)){
@@ -121,7 +121,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!-- Option to select default categories and bill classifications or go through the configuration wizard. -->
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                <input type="reset" class="btn btn-secondary" value="Reset">
             </div>
             <p>Already have an account? <a href="../login/">Login here</a>.</p>
         </form>

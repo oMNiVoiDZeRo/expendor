@@ -75,18 +75,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 	<link rel="manifest" href="/site.webmanifest">
-	<script src="https://www.google.com/recaptcha/api.js"></script>
 	<link href="../style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; }
         .wrapper{ width: 360px; padding: 20px; }
     </style>
-	<script>
-		function onSubmit(token) {
-			document.getElementById("login").submit();
-		}
-	</script>
 </head>
 <body>
     <div class="wrapper">
@@ -109,7 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary g-recaptcha" value="Login" data-sitekey="6LfqrN0bAAAAAL005o6Gp9ifbDQkna89uGGT15OH" data-callback='onSubmit' data-action='submit'>
+                <input type="submit" class="btn btn-primary" value="Login">
             </div>
             <p>Don't have an account? <a href="../register/">Sign up now</a>.</p>
         </form>
