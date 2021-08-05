@@ -25,9 +25,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <script>
 $(document).ready( function () {
     $('#expenses').DataTable({
-		columnDefs: [
-		   { orderable: false, targets: -1 }
-		]
+		"order": [ 0, 'desc' ],
+		"columnDefs": [ {
+		"targets"  : -1,
+		"orderable": false,
+		}]
 	});
 } );
 </script>
