@@ -17,14 +17,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <link href="../style.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 <script>
-	
-
-
+$(document).ready( function () {
+    $('#expenses').DataTable({
+		columnDefs: [
+		   { orderable: false, targets: -1 }
+		]
+	});
+} );
 </script>
 </head>
 <body>
@@ -56,8 +61,8 @@ echo '<table border="1" cellpadding="10" align="center"><tr><td align="center">'
 echo 'No expenses to display.<br/>';
 echo '</td></tr></table>';
 } else {
-echo '<table id="expenses" data-toggle="table" data-pagination="true" data-search="true" id="expenses" border="1" cellpadding="10" align="center">';
-echo '<thead><tr><th align="center" data-sortable="true"><strong>When</strong></th><th align="center" data-sortable="true"><strong>Category</strong></th><th align="center" data-sortable="true"><strong>Who</strong></th><th align="center" data-sortable="true"><strong>Amount</strong></th><th align="center" data-sortable="true"><strong>Bill</strong></th><th align="center" data-sortable="true"><strong>Tracking</strong></th><th></th></thead></tr>';
+echo '<table id="expenses" border="1" cellpadding="10" align="center">';
+echo '<thead><tr><th align="center"><strong>When</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th align="center"><strong>Tracking</strong></th><th></th></thead></tr>';
 echo'<tbody>';
 foreach($result as $row){
 $UID = $row['UID'];

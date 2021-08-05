@@ -29,6 +29,10 @@ input[type=text], input[type=password], select, select option {
 	text-align: left;
 }
 
+select[name=expenses_length] {
+	width: inherit;
+}
+
 input[type=radio] {
 	margin: 0 -27px 2px 50%;
 	transform: translate(-33px, 2px);
@@ -78,7 +82,7 @@ header a span {
 	font-size: 28px;
 }
 
-.bootstrap-table {
+#expenses_wrapper {
 	width: 75%;
 	margin: 0 auto;
 }
