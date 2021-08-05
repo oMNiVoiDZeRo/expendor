@@ -77,3 +77,8 @@ header a span {
 	width: 50vw;
 	font-size: 28px;
 }
+
+.bootstrap-table {
+	width: 75%;
+	margin: 0 auto;
+}

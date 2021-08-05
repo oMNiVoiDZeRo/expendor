@@ -18,7 +18,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <link rel="manifest" href="/site.webmanifest">
 <link href="../style.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+<script>
+	
+
+
+</script>
 </head>
 <body>
 <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
@@ -49,8 +56,8 @@ echo '<table border="1" cellpadding="10" align="center"><tr><td align="center">'
 echo 'No expenses to display.<br/>';
 echo '</td></tr></table>';
 } else {
-echo '<table id="expenses" border="1" cellpadding="10" align="center">';
-echo '<tr><th align="center"><strong>When</strong></th><th><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Tracking</strong></th><th></th></tr>';
+echo '<table id="expenses" data-toggle="table" data-pagination="true" data-search="true" id="expenses" border="1" cellpadding="10" align="center">';
+echo '<thead><tr><th align="center" data-sortable="true"><strong>When</strong></th><th align="center" data-sortable="true"><strong>Category</strong></th><th align="center" data-sortable="true"><strong>Who</strong></th><th align="center" data-sortable="true"><strong>Amount</strong></th><th align="center" data-sortable="true"><strong>Bill</strong></th><th align="center" data-sortable="true"><strong>Tracking</strong></th><th></th></thead></tr>';
 echo'<tbody>';
 foreach($result as $row){
 $UID = $row['UID'];
