@@ -21,7 +21,7 @@ input[type=checkbox]{
 	transform: translate(0, 2px);
 }
 
-input[type=text], input[type=password], select, select option {
+input[type=number], input[type=text], input[type=password], select, select option {
 	box-sizing: border-box;
 	width: 100%;
 	margin: 5px 0;

@@ -72,7 +72,7 @@ endforeach;
 <input type="text" name="who" placeholder="Who?" />
 </td></tr>
 <tr><td  align="center">
-<input type="text" name="amount" placeholder="Amount?" />
+<input type="number" name="amount" placeholder="Amount?" />
 </td></tr>
 <tr><td  align="center">
 <select name="currency">

@@ -81,7 +81,7 @@ endforeach;
 <input type="text" name="who" placeholder="Who?" value="<?php echo $row['Who']; ?>" /><br/>
 </td></tr>
 <tr><td align="center">
-<input type="text" name="amount" placeholder="Amount?" value="<?php echo $row['Amount']; ?>" /><br/>
+<input type="number" name="amount" placeholder="Amount?" value="<?php echo $row['Amount']; ?>" /><br/>
 </td></tr>
 <tr><td align="center">
 <select name="currency">
