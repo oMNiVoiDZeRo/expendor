@@ -92,34 +92,34 @@ echo '<tr><td><center><h2>Customize your categories:</h2></center><hr/></td></tr
 foreach($categories as $key => $value):
 echo '<tr><td><input type="text" name="categories[]" value="'.$value.'" /> <a class="btn btn-danger delete" href="#">Delete</a></td></tr>';
 endforeach;
-echo '<tr><td><br/><a class="btn btn-success addCat" href="#">Add Category</a><br/><br/><br/></td></tr>';
+echo '<tr><td><br/><a class="btn btn-warning addCat" href="#">Add Category</a><br/><br/><br/></td></tr>';
 echo '</table><br/><hr/><br/>';
 echo '<table class="custom bills" align="center">';
 echo '<tr><td><center><h2>Customize your bills:</h2></center><hr/></td></tr>';
 foreach($bills as $key => $value):
 echo '<tr><td><input type="text" name="bills[]" value="'.$value.'" /> <a class="btn btn-danger delete" href="#">Delete</a></td></tr>';
 endforeach;
-echo '<tr><td><br/><a class="btn btn-success addBill" href="#">Add Bill</a><br/><br/><br/></td></tr>';
+echo '<tr><td><br/><a class="btn btn-warning addBill" href="#">Add Bill</a><br/><br/><br/></td></tr>';
 echo '</table><br/><hr/><br/>';
 echo '<table class="custom currencies" align="center">';
 echo '<tr><td><center><h2>Customize your currencies:</h2></center><hr/></td></tr>';
 foreach($currencies as $key => $value):
 echo '<tr><td><input type="text" name="currencies[]" value="'.$value.'" /> <a class="btn btn-danger delete" href="#">Delete</a></td></tr>';
 endforeach;
-echo '<tr><td><br/><a class="btn btn-success addCurrency" href="#">Add Currency</a><br/><br/><br/></td></tr>';
+echo '<tr><td><br/><a class="btn btn-warning addCurrency" href="#">Add Currency</a><br/><br/><br/></td></tr>';
 echo '</table><br/><hr/><br/>';
-echo '<center><input class="btn btn-success" type="submit" value="Save Classifications" /></center></form>';
+echo '<center><input class="btn btn-warning" type="submit" value="Save Classifications" /></center></form>';
 echo '<br/>';
 echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
-echo ' <a class="btn btn-info" href="../log/">Log</a> ';
-echo ' <a class="btn btn-success" href="../add/">Add Expense.</a></center>';
+echo ' <a class="btn btn-warning" href="../log/">Log</a> ';
+echo ' <a class="btn btn-warning" href="../add/">Add Expense</a></center>';
 ?>
 	<hr/><br/>
     <p>
 <?php
 		if($username != 'test'){
 ?>
-        <a href="../reset" class="btn btn-primary">Reset Password</a>
+        <a href="../reset" class="btn btn-secondary">Reset Password</a>
 <?php
 		}
 ?>

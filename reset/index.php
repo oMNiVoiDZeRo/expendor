@@ -106,8 +106,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			<span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
 		</div>
 		<div class="form-group">
-			<input type="submit" class="btn btn-success" value="Submit">
-			<a class="btn btn-secondary ml-2" href="welcome.php">Cancel</a>
+			<input type="submit" class="btn btn-warning" value="Submit">
+			<a class="btn btn-secondary ml-2" href="#">Cancel</a>
 		</div>
 	</form>
 </div>
@@ -116,7 +116,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <?php
 		if($username != 'test'){
 ?>
-        <a href="../reset" class="btn btn-primary">Reset Password</a>
+        <a href="../reset" class="btn btn-secondary">Reset Password</a>
 <?php
 		}
 ?>

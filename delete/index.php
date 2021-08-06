@@ -52,11 +52,27 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <?php
 	}
 ?>
-<tr><td align="center"><input type="submit" value="Delete!" /></td></tr>
+<tr><td align="center"><input class="btn btn-danger" type="submit" value="Delete!" /></td></tr>
 </table>
 </form>
 <br/>
-<center><a href="../dashboard/">Dashboard</a><br/></center>
+<?php
+echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
+echo '<a class="btn btn-warning" href="../log/">Log</a>';
+echo ' <a class="btn btn-warning" href="../add/">Add Expense.</a> ';
+echo ' <a class="btn btn-warning" href="../custom/">Edit Classifications</a><br/></center>';
+?>
+	<hr/><br/>
+    <p>
+<?php
+		if($username != 'test'){
+?>
+        <a href="../reset" class="btn btn-secondary">Reset Password</a>
+<?php
+		}
+?>
+        <a href="../logout" class="btn btn-danger">Logout</a>
+    </p>
 <footer class="py-3 my-4">
     <p class="text-center">&copy; 2021 Expendor</p>
 </footer>

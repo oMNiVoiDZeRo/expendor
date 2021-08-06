@@ -121,7 +121,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
 <!-- Option to select default categories and bill classifications or go through the configuration wizard. -->
             <div class="form-group">
-                <input type="submit" class="btn btn-success" value="Submit"><br/>
+                <input type="submit" class="btn btn-warning" value="Submit"><br/>
                 <input type="reset" class="btn btn-secondary" value="Reset">
             </div>
             <p>Already have an account? <a href="../login/">Login here</a>.</p>

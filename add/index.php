@@ -100,21 +100,21 @@ endforeach;
 <option value="0">This is a payment.</option>
 <option value="1">I owe this.</option>
 </td></tr>
-<tr><td align="center"><input class="btn btn-success" type="submit" name="add" value="Add!" /></td></tr>
+<tr><td align="center"><input class="btn btn-warning" type="submit" name="add" value="Add!" /></td></tr>
 </form>
 </table>
 <br/>
 <center>
 <a class="btn btn-warning" href="../dashboard/">Dashboard</a> 
-<a class="btn btn-info" href="../log/">Log</a> 
-<a class="btn btn-secondary" href="../custom/">Edit Classifications</a> 
+<a class="btn btn-warning" href="../log/">Log</a> 
+<a class="btn btn-warning" href="../custom/">Edit Classifications</a> 
 </center>
 	<hr/><br/>
     <p>
 <?php
 		if($username != 'test'){
 ?>
-        <a href="../reset" class="btn btn-primary">Reset Password</a>
+        <a href="../reset" class="btn btn-secondary">Reset Password</a>
 <?php
 		}
 ?>

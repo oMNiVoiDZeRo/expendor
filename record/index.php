@@ -80,19 +80,20 @@ if(isset($_POST["update"])) {
 	
 echo '<br/>';
 echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
-echo ' <a class="btn btn-success" href="../add/">Add Expense</a> ';
-echo ' <a class="btn btn-secondary" href="../custom/">Edit Classifications</a><br/></center>';
+echo ' <a class="btn btn-warning" href="../log/">Log</a> ';
+echo ' <a class="btn btn-warning" href="../add/">Add Expense</a> ';
+echo ' <a class="btn btn-warning" href="../custom/">Edit Classifications</a><br/></center>';
 include('../footer.php');
 } else {
 echo '<center>You submitted an incomplete record.</center><br/>';
-echo '<center><a class="btn btn-primary" href="../add/">Fill out the record.</a></center>';}
+echo '<center><a class="btn btn-warning" href="../add/">Fill out the record.</a></center>';}
 ?>
 	<hr/><br/>
     <p>
 <?php
 		if($username != 'test'){
 ?>
-        <a href="../reset" class="btn btn-primary">Reset Password</a>
+        <a href="../reset" class="btn btn-secondary">Reset Password</a>
 <?php
 		}
 ?>

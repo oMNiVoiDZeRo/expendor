@@ -56,7 +56,23 @@ echo '</table>';}}
 include('../footer.php');
 ?>
 <br/>
-<center><a class="btn btn-primary"  href="../dashboard/">Dashboard</a></center>
+<?php
+echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
+echo '<a class="btn btn-warning" href="../log/">Log</a>';
+echo ' <a class="btn btn-warning" href="../add/">Add Expense.</a> ';
+echo ' <a class="btn btn-warning" href="../custom/">Edit Classifications</a><br/></center>';
+?>
+	<hr/><br/>
+    <p>
+<?php
+		if($username != 'test'){
+?>
+        <a href="../reset" class="btn btn-secondary">Reset Password</a>
+<?php
+		}
+?>
+        <a href="../logout" class="btn btn-danger">Logout</a>
+    </p>
 <footer class="py-3 my-4">
     <p class="text-center">&copy; 2021 Expendor</p>
 </footer>
