@@ -110,7 +110,9 @@ echo '<tr><td><br/><a class="btn btn-success addCurrency" href="#">Add Currency<
 echo '</table><br/><hr/><br/>';
 echo '<center><input class="btn btn-success" type="submit" value="Save Classifications" /></center></form>';
 echo '<br/>';
-echo '<center><a class="btn btn-primary" href="../dashboard/">Dashboard</a></center>';
+echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a></center>';
+echo '<br/>';
+echo '<center><a class="btn btn-info" href="../log/">Expense log</a><br/></center>';
 include('../footer.php');
 ?>
 <footer class="py-3 my-4">

@@ -82,15 +82,15 @@ if($type == 0){
 }
 if($UID != 1){
 $UID = 'UID';}
-echo '<tr><td class="x"><form action="../edit/" method="post"><input type="hidden" name="currency" value="' . $row['Currency'] . '" /><input type="hidden" name="type" value="' . $row['Type'] . '" /><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . numfmt_format_currency($fmt, $row['Amount'], $row['Currency']) . '</td><td>' . $row['Bill'] . '</td><td>' . $typeMessage . '</td><td><input type="submit" name="edit" value="Edit"/><input type="submit" name="delete" value="Delete"/></form></td></tr>';
+echo '<tr><td class="x"><form action="../edit/" method="post"><input type="hidden" name="currency" value="' . $row['Currency'] . '" /><input type="hidden" name="type" value="' . $row['Type'] . '" /><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . numfmt_format_currency($fmt, $row['Amount'], $row['Currency']) . '</td><td>' . $row['Bill'] . '</td><td>' . $typeMessage . '</td><td><input class="btn btn-secondary" type="submit" name="edit" value="Edit"/> <input class="btn btn-danger" type="submit" name="delete" value="Delete"/></form></td></tr>';
 }
 echo '</tbody></table><br/>';
 
 }
 echo '<br/>';
-echo '<center><a class="btn btn-primary" href="../add/">Add expense to database.</a></center>';
+echo '<center><a class="btn btn-success" href="../add/">Add expense to database.</a></center>';
 echo '<br/>';
-echo '<center><a class="btn btn-success" href="../custom/">Edit classifications</a><br/></center>';
+echo '<center><a class="btn btn-primary" href="../custom/">Edit classifications</a><br/></center>';
 echo '<br/>';
 } else {
 echo '<br/>';
@@ -101,7 +101,7 @@ echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 <?php
 		if($username != 'test'){
 ?>
-        <a href="../reset" class="btn btn-warning">Reset Password</a>
+        <a href="../reset" class="btn btn-secondary">Reset Password</a>
 <?php
 		}
 ?>
