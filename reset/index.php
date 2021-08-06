@@ -111,6 +111,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		</div>
 	</form>
 </div>
+	<hr/><br/>
+    <p>
+<?php
+		if($username != 'test'){
+?>
+        <a href="../reset" class="btn btn-primary">Reset Password</a>
+<?php
+		}
+?>
+        <a href="../logout" class="btn btn-danger">Logout</a>
+    </p>
 <footer class="py-3 my-4">
     <p class="text-center">&copy; 2021 Expendor</p>
 </footer>

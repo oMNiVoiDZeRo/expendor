@@ -110,9 +110,22 @@ echo '<tr><td><br/><a class="btn btn-success addCurrency" href="#">Add Currency<
 echo '</table><br/><hr/><br/>';
 echo '<center><input class="btn btn-success" type="submit" value="Save Classifications" /></center></form>';
 echo '<br/>';
-echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a></center>';
-echo '<br/>';
-echo '<center><a class="btn btn-info" href="../log/">Expense log</a><br/></center>';
+echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
+echo ' <a class="btn btn-info" href="../log/">Log</a> ';
+echo ' <a class="btn btn-success" href="../add/">Add Expense.</a></center>';
+?>
+	<hr/><br/>
+    <p>
+<?php
+		if($username != 'test'){
+?>
+        <a href="../reset" class="btn btn-primary">Reset Password</a>
+<?php
+		}
+?>
+        <a href="../logout" class="btn btn-danger">Logout</a>
+    </p>
+<?php
 include('../footer.php');
 ?>
 <footer class="py-3 my-4">

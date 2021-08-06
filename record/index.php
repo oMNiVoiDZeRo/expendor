@@ -79,13 +79,25 @@ if(isset($_POST["update"])) {
 }
 	
 echo '<br/>';
-echo '<center><a class="btn btn-primary" href="../dashboard/">Dashboard</a></center><br/>';
-	echo '<center><a class="btn btn-info" href="../log/">Expense Log</a><br/></center>';
+echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
+echo ' <a class="btn btn-success" href="../add/">Add Expense</a> ';
+echo ' <a class="btn btn-secondary" href="../custom/">Edit Classifications</a><br/></center>';
 include('../footer.php');
 } else {
 echo '<center>You submitted an incomplete record.</center><br/>';
 echo '<center><a class="btn btn-primary" href="../add/">Fill out the record.</a></center>';}
 ?>
+	<hr/><br/>
+    <p>
+<?php
+		if($username != 'test'){
+?>
+        <a href="../reset" class="btn btn-primary">Reset Password</a>
+<?php
+		}
+?>
+        <a href="../logout" class="btn btn-danger">Logout</a>
+    </p>
 <footer class="py-3 my-4">
 	<p class="text-center">&copy; 2021 Expendor</p>
 </footer>

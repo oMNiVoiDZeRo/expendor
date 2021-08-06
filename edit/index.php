@@ -122,9 +122,11 @@ value="1">I owe this.</option>
 </form>
 </table>
 <br/>
-<center><a class="btn btn-warning" href="../">Dashboard</a><br/></center>
-	
 <?php
+echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
+echo '<a class="btn btn-info" href="../log/">Log</a>';
+echo ' <a class="btn btn-success" href="../add/">Add an expense.</a> ';
+echo ' <a class="btn btn-secondary" href="../custom/">Edit classifications</a><br/></center>';
   			}
 	}
 	
@@ -163,10 +165,26 @@ value="1">I owe this.</option>
 </table>
 </form>
 <br/>
-<center><a class="btn btn-primary" href="../dashboard/">Dashboard</a><br/></center>
 <?php
+echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
+echo '<a class="btn btn-info" href="../log/">Log</a>';
+echo ' <a class="btn btn-success" href="../add/">Add Expense.</a> ';
+echo ' <a class="btn btn-secondary" href="../custom/">Edit Classifications</a><br/></center>';
 	}
 }
+?>
+	<hr/><br/>
+    <p>
+<?php
+		if($username != 'test'){
+?>
+        <a href="../reset" class="btn btn-primary">Reset Password</a>
+<?php
+		}
+?>
+        <a href="../logout" class="btn btn-danger">Logout</a>
+    </p>
+<?php
 include('../footer.php');
 ?>
 <footer class="py-3 my-4">

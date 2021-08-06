@@ -104,11 +104,22 @@ endforeach;
 </form>
 </table>
 <br/>
-<center><a class="btn btn-primary" href="../custom/">Edit classifications</a><br/></center>
-<br/>
-<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a><br/></center>
-<br/>
-<center><a class="btn btn-info" href="../log/">Expense log</a><br/></center>
+<center>
+<a class="btn btn-warning" href="../dashboard/">Dashboard</a> 
+<a class="btn btn-info" href="../log/">Log</a> 
+<a class="btn btn-secondary" href="../custom/">Edit Classifications</a> 
+</center>
+	<hr/><br/>
+    <p>
+<?php
+		if($username != 'test'){
+?>
+        <a href="../reset" class="btn btn-primary">Reset Password</a>
+<?php
+		}
+?>
+        <a href="../logout" class="btn btn-danger">Logout</a>
+    </p>
 <?php
 include('../footer.php');
 ?>
