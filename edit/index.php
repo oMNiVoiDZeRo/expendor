@@ -118,15 +118,15 @@ value="0">This is payment.</option>
 value="1">I owe this.</option>
 </select>
 </td></tr>
-<tr><td align="center"><input class="btn btn-success" type="submit" name="update" value="Update!" /></td></tr>
+<tr><td align="center"><input class="btn btn-warning" type="submit" name="update" value="Update!" /></td></tr>
 </form>
 </table>
 <br/>
 <?php
 echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
-echo '<a class="btn btn-info" href="../log/">Log</a>';
-echo ' <a class="btn btn-success" href="../add/">Add an expense.</a> ';
-echo ' <a class="btn btn-secondary" href="../custom/">Edit classifications</a><br/></center>';
+echo '<a class="btn btn-warning" href="../log/">Log</a>';
+echo ' <a class="btn btn-warning" href="../add/">Add an expense.</a> ';
+echo ' <a class="btn btn-warning" href="../custom/">Edit classifications</a><br/></center>';
   			}
 	}
 	
