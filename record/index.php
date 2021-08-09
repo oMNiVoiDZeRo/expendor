@@ -137,7 +137,7 @@ if(empty($_FILES['fileToUpload']['name'])){
 }
 	
 echo '</center>';
-	
+
 if($type == 0){
 	$typeMessage = "Payment.";
 } else {
