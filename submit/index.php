@@ -42,6 +42,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </header>
 <?php
 include('../header.php');
+
 if(isset($_POST['date'])){
 $date = $_POST['date'];
 	

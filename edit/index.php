@@ -122,10 +122,10 @@ value="1">I owe this.</option>
 <input type="text" name="note" placeholder="Additional notes?" value="<?php echo $row['Note']; ?>" />
 </td></tr>
 <?php
-if($_POST['file'] != 'No file attached.'){
+if($_POST['file'] != 'No file attached.' && file_exists($row['File'])){
 ?>
 <tr><td>
-<a class="btn btn-secondary" href="#">View Attached File</a>
+<a class="btn btn-secondary" href="<?php echo $row['File']; ?>">View Attached File</a>
 </td></tr>
 <tr><td>
 <strong>Replace attached file: </strong> <input type="file" name="fileToUpload" id="fileToUpload" />	
@@ -139,6 +139,9 @@ if($_POST['file'] != 'No file attached.'){
 <?php
 }
 ?>
+<tr><td  align="center">
+<input type="checkbox" name="deleteAttachment" id="deleteAttachment" /> Delete existing file attachment?
+</td></tr>
 <tr><td align="center"><input class="btn btn-warning" type="submit" name="update" value="Update!" /></td></tr>
 </form>
 </table>

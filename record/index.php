@@ -51,7 +51,24 @@ $bill = mysqli_real_escape_string($conn, $_POST['bill']);
 $type = mysqli_real_escape_string($conn, $_POST['type']);
 $currency = mysqli_real_escape_string($conn, $_POST['currency']);
 $note = mysqli_real_escape_string($conn, $_POST['note']);
+	
 echo '<center>';
+	
+if(isset($_POST['deleteAttachment'])) {
+	$sql = "SELECT * FROM `$username` WHERE `UID` = '$date'";
+	$result = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_assoc($result);
+	$file = $row['File'];
+	if($file != 'No file attached.' && file_exists($file)) {
+		if (!unlink($file)) {
+			$fileDeleteMessage = "<br/><br/>File attachment cannot be deleted due to an error."; 
+		} else { 
+			$fileDeleteMessage = "<br/><br/>File attachment has been deleted or file doesn't exist."; 
+		} 
+	} else {
+			$fileDeleteMessage = "<br/><br/>No attachment found to delete.";
+	}
+}
 	
 if(empty($_FILES['fileToUpload']['name'])){
 	echo 'No file to upload.';
@@ -130,7 +147,7 @@ if(isset($_POST["add"])) {
 	} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 }
 	
-if(isset($_POST["update"])) {
+if(isset($_POST["update"])) {	
 	if(empty($_FILES['fileToUpload']['name'])){
 		$sql = "UPDATE `$username` SET category = '$category', who = '$who', amount = '$amount', currency = '$currency', bill = '$bill', note = '$note' WHERE uid = '$date'";
 		$fileDeleteMessage = '';
@@ -139,7 +156,7 @@ if(isset($_POST["update"])) {
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
 		$file = $row['File'];
-		if($file != 'No file attached.') {
+		if($file != 'No file attached.' && !file_exists($file)) {
 			if (!unlink($file)) {
 				$fileDeleteMessage = "File attachment cannot be deleted due to an error."; 
 			} else { 
