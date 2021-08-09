@@ -62,26 +62,8 @@ $currencies = explode (",", $row['currencies']);
 	
 <center><strong>You are about to edit a record.</strong></center><br/>
 <table id="edit" border="1" cellpadding="10" align="center">
-<form name="record" action="../record/" method="post">
+<form name="record" action="../record/" method="post" enctype="multipart/form-data">
 <tr><td align="center"><input type="text" name="date" value="<?php echo $date; ?>"/>
-</td></tr>
-<tr><td align="center">
-<select name="category">
-<option>Category?</option>
-<?php
-foreach($categories as $key => $value):
-echo '<option ';
-if($row['Category'] == $value){echo 'selected';}
-echo ' value="'.$value.'">'.$value.'</option>';
-endforeach;
-?>
-</select>
-</td></tr>
-<tr><td align="center">
-<input type="text" name="who" placeholder="Who?" value="<?php echo $row['Who']; ?>" /><br/>
-</td></tr>
-<tr><td align="center">
-<input type="number" name="amount" placeholder="Amount?" value="<?php echo $row['Amount']; ?>" /><br/>
 </td></tr>
 <tr><td align="center">
 <select name="currency">
@@ -96,8 +78,26 @@ endforeach;
 </select>
 </td></tr>
 <tr><td align="center">
+<input type="text" name="who" placeholder="Who?" value="<?php echo $row['Who']; ?>" /><br/>
+</td></tr>
+<tr><td align="center">
+<input type="number" name="amount" placeholder="Amount?" value="<?php echo $row['Amount']; ?>" /><br/>
+</td></tr>
+<tr><td align="center">
+<select name="category">
+<option>Category?</option>
+<?php
+foreach($categories as $key => $value):
+echo '<option ';
+if($row['Category'] == $value){echo 'selected';}
+echo ' value="'.$value.'">'.$value.'</option>';
+endforeach;
+?>
+</select>
+</td></tr>
+<tr><td align="center">
 <select name="bill">
-<option>Bill Classification?</option>
+<option>Is this a bill?</option>
 <?php
 foreach($bills as $key => $value):
 echo '<option ';
@@ -118,6 +118,27 @@ value="0">This is payment.</option>
 value="1">I owe this.</option>
 </select>
 </td></tr>
+<tr><td  align="center">
+<input type="text" name="note" placeholder="Additional notes?" value="<?php echo $row['Note']; ?>" />
+</td></tr>
+<?php
+if($_POST['file'] != 'No file attached.'){
+?>
+<tr><td>
+<a class="btn btn-secondary" href="#">View Attached File</a>
+</td></tr>
+<tr><td>
+<strong>Replace attached file: </strong> <input type="file" name="fileToUpload" id="fileToUpload" />	
+</td></tr>
+<?php
+} else {
+?>
+<tr><td>
+<input type="file" name="fileToUpload" id="fileToUpload" />	
+</td></tr>
+<?php
+}
+?>
 <tr><td align="center"><input class="btn btn-warning" type="submit" name="update" value="Update!" /></td></tr>
 </form>
 </table>
@@ -132,7 +153,7 @@ echo ' <a class="btn btn-warning" href="../custom/">Edit classifications</a><br/
 	
 		if(isset($_POST["delete"])) {
 ?>
-<center><strong>You are about to delete a record.</strong></center><br/>
+<center><strong>You are about to delete this record and any attached file that could be shared between expense records.</strong></center><br/>
 <form name="delete" action="../submit/" method="post">
 <table border="1" cellpadding="10" align="center">
 <?php
@@ -142,7 +163,7 @@ echo ' <a class="btn btn-warning" href="../custom/">Edit classifications</a><br/
 			$result = mysqli_query($conn, $sql);
 			$row = mysqli_fetch_assoc($result);
 ?>
-<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th></th></tr>
+<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Note</strong></th><th>Bill</th><th></th></tr>
 <tr><td align="center" class="x">
 <input type="hidden" name="date" value="<?php echo $date; ?>" /><?php echo $date; ?>
 </td>
@@ -156,12 +177,24 @@ echo ' <a class="btn btn-warning" href="../custom/">Edit classifications</a><br/
 <?php echo number_format($row['Amount'], 2, '.', ','); ?>
 </td>
 <td>
+<?php echo $row['Note']; ?>
+</td>
+<td>
 <?php echo $row['Bill']; ?>
 </td>
 <?php
   		}
 ?>
-<td align="center"><input class="btn btn-danger" type="submit" value="Delete!" /></td></tr>
+<td align="center">
+<?php
+if($row['File'] != 'No file attached.'){
+?>
+<a class="btn btn-secondary" target="_blank" href="<?php echo $row['File'] ?>">View Attachment</a>	
+<?php
+}
+?>
+	<input class="btn btn-danger" type="submit" value="Delete!" />
+</td></tr>
 </table>
 </form>
 <br/>
