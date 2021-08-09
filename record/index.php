@@ -72,8 +72,15 @@ if(isset($_POST['deleteAttachment'])) {
 	
 if(empty($_FILES['fileToUpload']['name'])){
 	echo 'No file to upload.';
-	$target_link = '';
-	$target_asset = 'No file attached.';
+	$sql = "SELECT * FROM `$username` WHERE `UID` = '$date'";
+	$result = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_assoc($result);
+	if($row['File'] != null && $row['File'] != 'No file attached.'){
+		$target_link = '<a class="btn btn-warning" target="_blank" href="' . $row['File'] . '">View Attachment</a>';
+	} else {
+		$target_link = '';
+		$target_asset = 'No file attached.';
+	}
 } else {
 	$target_dir = dirname(__DIR__, 1) . '/uploads/' . $username . '/';
 	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
