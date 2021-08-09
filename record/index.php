@@ -52,34 +52,35 @@ $type = mysqli_real_escape_string($conn, $_POST['type']);
 $currency = mysqli_real_escape_string($conn, $_POST['currency']);
 $note = mysqli_real_escape_string($conn, $_POST['note']);
 	
-echo '<center>';
-	
+$sql = "SELECT * FROM `$username` WHERE `UID` = '$date'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$file = $row['File'];
+$target_link = '<a class="btn btn-warning" target="_blank" href="' . $file . '">View Attachment</a>';
+
 if(isset($_POST['deleteAttachment'])) {
-	$sql = "SELECT * FROM `$username` WHERE `UID` = '$date'";
-	$result = mysqli_query($conn, $sql);
-	$row = mysqli_fetch_assoc($result);
-	$file = $row['File'];
+
 	if($file != 'No file attached.' && file_exists($file)) {
 		if (!unlink($file)) {
 			$fileDeleteMessage = "<br/><br/>File attachment cannot be deleted due to an error."; 
 		} else { 
-			$fileDeleteMessage = "<br/><br/>File attachment has been deleted or file doesn't exist."; 
+			$fileDeleteMessage = "<br/><br/>File attachment has been deleted or file doesn't exist.";
+			$target_link = 'Deleted attached file.';
 		} 
 	} else {
 			$fileDeleteMessage = "<br/><br/>No attachment found to delete.";
 	}
-}
+} else {}
+
+echo '<center>';
 	
 if(empty($_FILES['fileToUpload']['name'])){
 	echo 'No file to upload.';
-	$sql = "SELECT * FROM `$username` WHERE `UID` = '$date'";
-	$result = mysqli_query($conn, $sql);
-	$row = mysqli_fetch_assoc($result);
-	if($row['File'] != null && $row['File'] != 'No file attached.'){
-		$target_link = '<a class="btn btn-warning" target="_blank" href="' . $row['File'] . '">View Attachment</a>';
+	if($file != 'No file attached.'){
+		$target_link = '<a class="btn btn-warning" target="_blank" href="' . $file . '">View Attachment</a>';
+		$target_asset = $file;
 	} else {
-		$target_link = '';
-		$target_asset = 'No file attached.';
+		$target_link = 'No file attached.';
 	}
 } else {
 	$target_dir = dirname(__DIR__, 1) . '/uploads/' . $username . '/';
@@ -149,26 +150,39 @@ if(isset($_POST["add"])) {
 		echo '<center><p><strong>Expense successfully recorded.</strong></p></center>';
 		echo '<table border="1" cellpadding="10" align="center">';
 		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th><th><strong>Note</strong></th><th><strong>File</strong></th></tr>';
-		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>' . $target_link . '</td></tr>';
+		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>';
+		
+		if(isset($target_asset)){
+			echo $target_link;
+		} else { 
+			echo '';
+		}
+		
+		echo '</td></tr>';
 		echo '</table>';
 	} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 }
 	
 if(isset($_POST["update"])) {	
 	if(empty($_FILES['fileToUpload']['name'])){
-		$sql = "UPDATE `$username` SET category = '$category', who = '$who', amount = '$amount', currency = '$currency', bill = '$bill', note = '$note' WHERE uid = '$date'";
+		if(isset($_POST['deleteAttachment'])) {
+			$target_asset = 'No file attached.';
+		} else {}
+		
+		$sql = "UPDATE `$username` SET category = '$category', who = '$who', amount = '$amount', currency = '$currency', bill = '$bill', note = '$note', file = '$target_asset' WHERE uid = '$date'";
 		$fileDeleteMessage = '';
+
 	} else {
 		$sql = "SELECT * FROM `$username` WHERE `uid` = '$date'";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
 		$file = $row['File'];
-		if($file != 'No file attached.' && !file_exists($file)) {
+		if($file != 'No file attached.' && file_exists($file)) {
 			if (!unlink($file)) {
-				$fileDeleteMessage = "File attachment cannot be deleted due to an error."; 
-			} else { 
-				$fileDeleteMessage = "Existing file attachment has been deleted."; 
-			} 
+					$fileDeleteMessage = "File attachment cannot be deleted due to an error."; 
+				} else { 
+					$fileDeleteMessage = "Existing file attachment has been deleted.";
+			}		
 		} else {
 				$fileDeleteMessage = "No existing attachment found to replace.";
 		}
@@ -176,10 +190,18 @@ if(isset($_POST["update"])) {
 		$sql = "UPDATE `$username` SET category = '$category', who = '$who', amount = '$amount', currency = '$currency', bill = '$bill', note = '$note', file = '$target_asset' WHERE uid = '$date'";
 	}
 	if(mysqli_query($conn, $sql)){		
-		echo '<center><p><strong>Expense successfully updated.</strong></p><p>' . $fileDeleteMessage . '</center>';
+		echo '<center><p><strong>Expense successfully updated.</strong></p><p>' . $fileDeleteMessage . '</p></center>';
 		echo '<table border="1" cellpadding="10" align="center">';
 		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th><th><strong>Note</strong></th><th><strong>File</strong></th></tr>';
-		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>' . $target_link . '</td></tr>';
+		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . $amount . '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>';
+		
+		if(file_exists($target_asset)){
+			echo $target_link;
+		} else {
+			echo '';
+		}
+		
+		echo '</td></tr>';
 		echo '</table>';
 	} else {echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 }
