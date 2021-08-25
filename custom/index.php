@@ -70,17 +70,6 @@ echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
 echo ' <a class="btn btn-warning" href="../log/">Log</a> ';
 echo ' <a class="btn btn-warning" href="../add/">Add Expense</a></center>';
 ?>
-	<hr/><br/>
-    <p>
-<?php
-		if($username != 'test'){
-?>
-        <a href="../reset" class="btn btn-secondary">Reset Password</a>
-<?php
-		}
-?>
-        <a href="../logout" class="btn btn-danger">Logout</a>
-    </p>
 <script>
 $(document).ready(function() {
 	$('table').on("click",".delete", function(e){

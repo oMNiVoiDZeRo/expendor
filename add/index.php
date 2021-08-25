@@ -73,17 +73,6 @@ endforeach;
 <a class="btn btn-warning" href="../log/">Log</a> 
 <a class="btn btn-warning" href="../custom/">Edit Classifications</a> 
 </center>
-	<hr/><br/>
-    <p>
-<?php
-		if($username != 'test'){
-?>
-        <a href="../reset" class="btn btn-secondary">Reset Password</a>
-<?php
-		}
-?>
-        <a href="../logout" class="btn btn-danger">Logout</a>
-    </p>
 <?php
 include('../footer.php');
 ?>

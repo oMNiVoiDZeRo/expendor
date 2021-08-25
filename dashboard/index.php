@@ -160,18 +160,5 @@ echo '<br/>';
 } else {
 echo '<br/>';
 echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
-?>
-	<hr/><br/>
-    <p>
-<?php
-		if($username != 'test'){
-?>
-        <a href="../reset" class="btn btn-secondary">Reset Password</a>
-<?php
-		}
-?>
-        <a href="../logout" class="btn btn-danger">Logout</a>
-    </p>
-<?php
 include('../footer.php');
 ?>
