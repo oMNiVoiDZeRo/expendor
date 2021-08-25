@@ -1,17 +1,5 @@
 <?php
 ob_start();
-session_start();
- 
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: ../login/");
-    exit;
-} else {
-	$username = $_SESSION["username"];
-	if($username == 'test'){
-		header("location: http://localhost/expendor/login/");
-		exit;
-	}
-}
 
 require_once "../config.php";
  
