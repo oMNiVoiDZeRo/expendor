@@ -218,8 +218,3 @@ echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 <?php
 include('../footer.php');
 ?>
-<footer class="py-3 my-4">
-    <p class="text-center">&copy; 2021 Expendor</p>
-</footer>
-</body>
-</html>

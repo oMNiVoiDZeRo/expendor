@@ -108,9 +108,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <p>Don't have an account? <a href="../register/">Sign up now</a>.</p>
         </form>
-		<footer class="py-3 my-4">
-			<p class="text-center">&copy; 2021 Expendor</p>
-		</footer>
-    </div>
-</body>
-</html>
+<?php
+include('../footer.php');
+?>

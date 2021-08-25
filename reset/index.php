@@ -122,8 +122,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
         <a href="../logout" class="btn btn-danger">Logout</a>
     </p>
-<footer class="py-3 my-4">
-    <p class="text-center">&copy; 2021 Expendor</p>
-</footer>
-</body>
-</html>
+<?php
+include('../footer.php');
+?>

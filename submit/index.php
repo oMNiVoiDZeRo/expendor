@@ -89,8 +89,6 @@ echo ' <a class="btn btn-warning" href="../custom/">Edit Classifications</a><br/
 ?>
         <a href="../logout" class="btn btn-danger">Logout</a>
     </p>
-<footer class="py-3 my-4">
-    <p class="text-center">&copy; 2021 Expendor</p>
-</footer>
-</body>
-</html>
+<?php
+include('../footer.php');
+?>

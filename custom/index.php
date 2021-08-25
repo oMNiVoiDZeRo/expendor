@@ -125,12 +125,6 @@ echo ' <a class="btn btn-warning" href="../add/">Add Expense</a></center>';
 ?>
         <a href="../logout" class="btn btn-danger">Logout</a>
     </p>
-<?php
-include('../footer.php');
-?>
-<footer class="py-3 my-4">
-    <p class="text-center">&copy; 2021 Expendor</p>
-</footer>
 <script>
 $(document).ready(function() {
 	$('table').on("click",".delete", function(e){
@@ -154,5 +148,6 @@ $(document).ready(function() {
 	});
 });
 </script>
-</body>
-</html>
+<?php
+include('../footer.php');
+?>
