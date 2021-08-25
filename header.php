@@ -18,6 +18,9 @@ echo '<br/>';
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 </head>
 <body>
+<?php
+	if($nav == True){
+?>
 <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
 <a href="http://localhost/expendor/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
 <span class="fs-4">Expendor</span>
@@ -37,3 +40,6 @@ echo '<br/>';
 <li class="nav-item"><a href="http://localhost/expendor/logout/" class="nav-link">Logout</a></li>
 </ul>
 </header>
+<?php
+	}
+?>	
