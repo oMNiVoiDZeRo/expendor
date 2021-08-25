@@ -1,7 +1,7 @@
 <?php
 ob_start();
 
-require_once "../config.php";
+require_once "../header.php";
  
 $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
@@ -49,38 +49,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($conn);
 }
 ?>
- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>𝐄𝐗𝐏𝐄𝐍𝐃𝐎𝐑 | Reset Password</title>
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link href="../style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 360px; padding: 20px; }
-    </style>
-</head>
-<body>
-<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-<a href="http://localhost/expendor/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-<span class="fs-4">Expendor</span>
-</a>
-
-<ul class="nav nav-pills">
-<li class="nav-item"><a href="http://localhost/expendor/dashboard/" class="nav-link">Dashboard</a></li>
-<li class="nav-item"><a href="http://localhost/expendor/log/" class="nav-link">Log</a></li>
-<li class="nav-item"><a href="http://localhost/expendor/add/" class="nav-link">Add Expense</a></li>
-<li class="nav-item"><a href="http://localhost/expendor/custom/" class="nav-link">Edit Classifications</a></li>
-<li class="nav-item"><a href="http://localhost/expendor/reset/" class="nav-link active" aria-current="page">Reset Password</a></li>
-<li class="nav-item"><a href="http://localhost/expendor/logout/" class="nav-link">Logout</a></li>
-</ul>
-</header>
 <div class="wrapper">
 	<h2>Reset Password</h2>
 	<p>Please fill out this form to reset your password.</p>

@@ -182,6 +182,8 @@ body .nav a:hover {
 	font-weight: bold;
 }
 
+.wrapper{ width: 360px; padding: 20px; }
+
 
 
 @media screen and (max-width:927px) {

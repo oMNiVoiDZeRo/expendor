@@ -56,6 +56,18 @@ echo 'Error: ' . $sql . '<br/>' . mysqli_error($conn);}
 ?>
         <a href="../logout" class="btn btn-danger">Logout</a>
     </p>
+<script>
+$(document).ready( function () {
+    $('#expenses').DataTable({
+		"order": [ 0, 'desc' ],
+		"columnDefs": [ {
+		"targets"  : -1,
+		"orderable": false,
+		}]
+	});
+		
+} );
+</script>
 <?php
 include('../footer.php');
 ?>
