@@ -3,13 +3,14 @@ session_start();
 
 $url_array =  explode('/', $_SERVER['REQUEST_URI']);
 $url = $url_array[2];
+
 if($url != 'login' && $url != 'register'){
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: ../login/");
-    exit;
-} else {
-	$username = $_SESSION["username"]; 
-}
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+		header("location: ../login/");
+		exit;
+	} else {
+		$username = $_SESSION["username"]; 
+	}
 }
 
 date_default_timezone_set('America/Los_Angeles');

@@ -152,6 +152,7 @@ echo '</tr>';
 endforeach;
 	
 echo '</table><br/><br/>';
+
 echo '<br/>';
 echo '<center><a class="btn btn-warning" href="../log/">Log</a> ';
 echo '<a class="btn btn-warning" href="../add/">Add Expense</a> ';

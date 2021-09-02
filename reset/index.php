@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <div class="wrapper">
 	<h2>Reset Password</h2>
 	<p>Please fill out this form to reset your password.</p>
-	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+	<form id="reset" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
 		<div class="form-group">
 			<input type="password" placeholder="New Password" name="new_password" class="form-control <?php echo (!empty($new_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $new_password; ?>">
 			<span class="invalid-feedback"><?php echo $new_password_err; ?></span>

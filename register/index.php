@@ -74,10 +74,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		if (!file_exists('../uploads/' . $username . '/')) {
 			mkdir('../uploads/' . $username . '/', 0777, true);
 		}
-         
+
         if($stmt = mysqli_prepare($conn, $sql)){
             if(mysqli_stmt_execute($stmt)){
-                header("location: ../login/");
+                header("location: ../login/", true, 301);
+				exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -89,29 +90,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($conn);
 }
 ?>
-    <div class="dialog">
-        <h2>Register Account</h2>
-        <p>Please fill this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
-                <input type="text" placeholder="Username" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group">
-                <input type="password" placeholder="Password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="password" placeholder="Confirm Password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-                <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
-            </div>
+<div class="dialog">
+	<h2>Register Account</h2>
+	<p>Please fill this form to create an account.</p>
+	<form id="register" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+		<div class="form-group">
+			<input type="text" placeholder="Username" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+			<span class="invalid-feedback"><?php echo $username_err; ?></span>
+		</div>    
+		<div class="form-group">
+			<input type="password" placeholder="Password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+			<span class="invalid-feedback"><?php echo $password_err; ?></span>
+		</div>
+		<div class="form-group">
+			<input type="password" placeholder="Confirm Password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+			<span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+		</div>
 <!-- Option to select default categories and bill classifications or go through the configuration wizard. -->
-            <div class="form-group">
-                <input type="submit" class="btn btn-warning" value="Submit"><br/>
-                <input type="reset" class="btn btn-secondary" value="Reset">
-            </div>
-            <p>Already have an account? <a href="../login/">Login here</a>.</p>
-        </form>
+		<div class="form-group">
+			<input type="submit" class="btn btn-warning" value="Submit"><br/>
+			<input type="reset" class="btn btn-secondary" value="Reset">
+		</div>
+		<p>Already have an account? <a href="../login/">Login here</a>.</p>
+	</form>
 <?php
 include('../footer.php');
 ?>

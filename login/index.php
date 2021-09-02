@@ -40,7 +40,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
 
-                            header("location: ../dashboard/");
+                            header("location: ../dashboard/",  true,  301 );
+							exit();
                         } else{
                             $login_err = "Invalid username or password.";
                         }
@@ -59,30 +60,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($conn);
 }
 ?>
-    <div class="dialog">
-        <h2>Login</h2>
-        <p>Please fill in your credentials to login.</p>
+<div class="dialog">
+	<h2>Login</h2>
+	<p>Please fill in your credentials to login.</p>
 
-        <?php 
-        if(!empty($login_err)){
-            echo '<div class="alert alert-danger">' . $login_err . '</div>';
-        }        
-        ?>
+	<?php 
+	if(!empty($login_err)){
+		echo '<div class="alert alert-danger">' . $login_err . '</div>';
+	}        
+	?>
 
-        <form id="login" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
-                <input type="text" name="username" placeholder="Username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group">
-                <input type="password" name="password" placeholder="Password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-warning" value="Login">
-            </div>
-            <p>Don't have an account? <a href="../register/">Sign up now</a>.</p>
-        </form>
+	<form id="login" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+		<div class="form-group">
+			<input type="text" name="username" placeholder="Username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+			<span class="invalid-feedback"><?php echo $username_err; ?></span>
+		</div>    
+		<div class="form-group">
+			<input type="password" name="password" placeholder="Password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+			<span class="invalid-feedback"><?php echo $password_err; ?></span>
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-warning" value="Login">
+		</div>
+		<p>Don't have an account? <a href="../register/">Sign up now</a>.</p>
+	</form>
 <?php
 include('../footer.php');
 ?>
