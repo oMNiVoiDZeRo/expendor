@@ -45,7 +45,7 @@ switch ($url) {
     case 'reset':
         $pageTitle = "Reset Password";
 		if($username == 'test'){
-			header("location: http://localhost/expendor/login/");
+			header("location: ../login/");
 			exit;
 		}
         break;
