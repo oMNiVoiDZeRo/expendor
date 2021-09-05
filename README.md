@@ -5,4 +5,4 @@ An expense, debt and bill tracking and management web application.
 Login is test password is asdfasdf.
 
 # Development for the future.
-Streamline workflow.
+Streamline workflow. Add event handler for captcha on local.
