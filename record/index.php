@@ -109,12 +109,13 @@ if(isset($_POST["add"])) {
 		echo '<center><p><strong>Expense successfully recorded.</strong></p></center>';
 		echo '<table border="1" cellpadding="10" align="center">';
 		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th><th><strong>Note</strong></th><th><strong>File</strong></th></tr>';
-		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . numfmt_format_currency($fmt, $amount, $currency) . '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>';
+		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . floatval($amount) . '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>';
 		
 		if(isset($target_asset)){
 			echo $target_link;
 		} else { 
 			echo '';
+			$target_asset = 'No file attached.';
 		}
 		
 		echo '</td></tr>';
@@ -128,7 +129,7 @@ if(isset($_POST["update"])) {
 			$target_asset = 'No file attached.';
 		} else {}
 		
-		$sql = "UPDATE `$username` SET category = '$category', who = '$who', amount = '$amount', currency = '$currency', bill = '$bill', note = '$note', file = '$target_asset' WHERE uid = '$date'";
+		$sql = "UPDATE `$username` SET category = '$category', who = '$who', amount = '$amount', currency = '$currency', bill = '$bill', note = '$note', file = '$target_asset', type = '$type' WHERE uid = '$date'";
 		$fileDeleteMessage = '';
 
 	} else {
@@ -146,13 +147,13 @@ if(isset($_POST["update"])) {
 				$fileDeleteMessage = "No existing attachment found to replace.";
 		}
 		
-		$sql = "UPDATE `$username` SET category = '$category', who = '$who', amount = '$amount', currency = '$currency', bill = '$bill', note = '$note', file = '$target_asset' WHERE uid = '$date'";
+		$sql = "UPDATE `$username` SET category = '$category', who = '$who', amount = '$amount', currency = '$currency', bill = '$bill', note = '$note', file = '$target_asset', type = '$type' WHERE uid = '$date'";
 	}
 	if(mysqli_query($conn, $sql)){		
 		echo '<center><p><strong>Expense successfully updated.</strong></p><p>' . $fileDeleteMessage . '</p></center>';
 		echo '<table border="1" cellpadding="10" align="center">';
 		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th><th><strong>Note</strong></th><th><strong>File</strong></th></tr>';
-		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . numfmt_format_currency($fmt, $amount, $currency) . '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>';
+		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . floatval($amount) . '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>';
 		
 		if(file_exists($target_asset)){
 			echo $target_link;
@@ -170,7 +171,6 @@ echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
 echo ' <a class="btn btn-warning" href="../log/">Log</a> ';
 echo ' <a class="btn btn-warning" href="../add/">Add Expense</a> ';
 echo ' <a class="btn btn-warning" href="../custom/">Edit Classifications</a><br/></center>';
-include('../footer.php');
 } else {
 echo '<center>You submitted an incomplete record.</center><br/>';
 echo '<center><a class="btn btn-warning" href="../add/">Fill out the record.</a></center>';}

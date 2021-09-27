@@ -25,7 +25,11 @@ if($type == 0){
 }
 if($UID != 1){
 $UID = 'UID';}
-echo '<tr><td class="x"><form action="../edit/" method="post"><input type="hidden" name="file" value="' . $row['File'] . '" /><input type="hidden" name="note" value="' . $row['Note'] . '" /><input type="hidden" name="currency" value="' . $row['Currency'] . '" /><input type="hidden" name="type" value="' . $row['Type'] . '" /><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . numfmt_format_currency($fmt, $row['Amount'], $row['Currency']) . '</td><td>' . $row['Currency'] . '</td><td>' . $row['Bill'] . '</td><td>' . $typeMessage . '</td><td>' . $row['Note'] . '</td><td>';
+
+$decimal = strlen(substr(strrchr($row['Amount'], "."), 1));
+$amount = number_format($row['Amount'], $decimal, '.', '');
+	
+echo '<tr><td class="x"><form action="../edit/" method="post"><input type="hidden" name="file" value="' . $row['File'] . '" /><input type="hidden" name="note" value="' . $row['Note'] . '" /><input type="hidden" name="currency" value="' . $row['Currency'] . '" /><input type="hidden" name="type" value="' . $row['Type'] . '" /><input type="hidden" name="uid" value="' . $row['UID'] . '" />' . $row['UID'] . '</td><td>' . $row['Category'] . '</td><td>' . $row['Who'] . '</td><td>' . floatval($row['Amount']) . '</td><td>' . $row['Currency'] . '</td><td>' . $row['Bill'] . '</td><td>' . $typeMessage . '</td><td>' . $row['Note'] . '</td><td>';
 
 if($row['File'] != 'No file attached.' && file_exists($row['File'])) { 
 echo	'<a class="btn btn-secondary" target="_blank" href="' . $row['File'] . '">View Attachment</a> ';
@@ -33,6 +37,7 @@ echo	'<a class="btn btn-secondary" target="_blank" href="' . $row['File'] . '">V
 
 echo ' <input class="btn btn-secondary" type="submit" name="edit" value="Edit"/> <input class="btn btn-danger" type="submit" name="delete" value="Delete"/></form></td></tr>';
 }
+	
 echo '</tbody></table><br/>';
 
 }
