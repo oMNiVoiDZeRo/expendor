@@ -134,14 +134,17 @@ echo '<tr>';
 echo '<td align="right">' . $currency . '</td>';
 foreach($bills as $key => $value):
 if ($value == 'This is not a bill.') continue;
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND `Currency` = '$currency'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $paid = $row['value_sum'];
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
 echo '<td ';
 if($paid > 0){echo 'class="paid"';}
 echo ' >';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '1' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '1' AND `Currency` = '$currency'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $owed = $row['value_sum'];
