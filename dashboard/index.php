@@ -141,8 +141,9 @@ $paid = $row['value_sum'];
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
+$monthPaid = $row['value_sum'];
 echo '<td ';
-if($paid > 0){echo 'class="paid"';}
+if($monthPaid > 0){echo 'class="paid"';}
 echo ' >';
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '1' AND `Currency` = '$currency'";
 $result = mysqli_query($conn, $sql);
