@@ -21,7 +21,7 @@ $currencies = explode (",", $row['currencies']);
 <center><strong>You are about to edit a record.</strong></center><br/>
 <table id="edit" border="1" cellpadding="10" align="center">
 <form name="record" action="../record/" method="post" enctype="multipart/form-data">
-<tr><td align="center"><input type="text" name="date" value="<?php echo $date; ?>"/>
+<tr><td align="center"><input disabled type="text" name="date" value="<?php echo $date; ?>"/>
 </td></tr>
 <tr><td align="center">
 <select name="currency">
