@@ -10,7 +10,7 @@ $currencies = explode (",", $row['currencies']);
 <center><strong>You are about to add a record.</strong></center><br/>
 <table id="add" border="1" cellpadding="10" align="center">
 <form name="record" action="../record/" method="post" enctype="multipart/form-data">
-<tr><td align="center"><input type="text" name="date" value="<?php
+<tr><td align="center"><input disabled type="text" name="date" value="<?php
 	date_default_timezone_set('America/Los_Angeles');
 	$date = date("Y-m-d H:i:s");
 	echo $date;	
