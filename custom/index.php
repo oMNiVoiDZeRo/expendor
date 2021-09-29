@@ -78,17 +78,17 @@ $(document).ready(function() {
 	})	
 	$('table').on("click",".addCat", function(e){
 		e.preventDefault();
-		$(this).parent().parent().parent().append('<tr><td><br/><a class="btn btn-success addCat" href="#">Add Category</a><br/><br/><br/><br/></td></tr>');
+		$(this).parent().parent().parent().append('<tr><td><br/><a class="btn btn-warning addCat" href="#">Add Category</a><br/><br/><br/><br/></td></tr>');
 		$(this).parent().html( '<input type="text" name="categories[]" value="" /> <a class="btn btn-danger delete" href="#">Delete</a>');
 	});
 	$('table').on("click",".addBill", function(e){
 		e.preventDefault();
-		$(this).parent().parent().parent().append('<tr><td><br/><a class="btn btn-success addBill" href="#">Add Bill</a><br/><br/><br/><br/></td></tr>');
+		$(this).parent().parent().parent().append('<tr><td><br/><a class="btn btn-warning addBill" href="#">Add Bill</a><br/><br/><br/><br/></td></tr>');
 		$(this).parent().html( '<input type="text" name="bills[]" value="" /> <a class="btn btn-danger delete" href="#">Delete</a>');
 	});
 	$('table').on("click",".addCurrency", function(e){
 		e.preventDefault();
-		$(this).parent().parent().parent().append('<tr><td><br/><a class="btn btn-success addCurrency" href="#">Add Currency</a><br/><br/><br/><br/></td></tr>');
+		$(this).parent().parent().parent().append('<tr><td><br/><a class="btn btn-warning addCurrency" href="#">Add Currency</a><br/><br/><br/><br/></td></tr>');
 		$(this).parent().html( '<input type="text" name="currencies[]" value="" /> <a class="btn btn-danger delete" href="#">Delete</a>');
 	});
 });
