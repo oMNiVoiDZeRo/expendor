@@ -1,6 +1,7 @@
 <?php
 include('../header.php');
-if(isset($_POST['date']) && $_POST['category'] != "Category?" && $_POST['who'] != "" && $_POST['amount'] != "" && $_POST['bill'] != "Is this a bill?" && $_POST['type'] != "Tracking?"){
+
+if(isset($_POST['date']) && $_POST['currency'] != "Currency?" && $_POST['who'] != "" && $_POST['amount'] != "" && $_POST['category'] != "Category?" && $_POST['bill'] != "Is this a bill?" && $_POST['type'] != "Tracking?"){
 $fmt = numfmt_create('en_US', NumberFormatter::CURRENCY );
 $date = mysqli_real_escape_string($conn, $_POST['date']);
 $category = mysqli_real_escape_string($conn, $_POST['category']);
