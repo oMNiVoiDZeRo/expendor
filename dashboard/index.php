@@ -41,8 +41,22 @@ $outcome = $outcome - $row['value_sum'];
 # Currency amount of net remaining balance subtracted by amount owed.
 	
 echo '<td align="right">' . $value . '</td>';
-echo '<td align="center">' . floatval($income) . '</td>';
-echo '<td align="center">' . floatval($outcome) . '</td>';	
+echo '<td align="center">';
+	
+if($value == 'usd'){
+	echo number_format($income, 2);
+} else {
+	echo floatval($income);
+}
+
+echo '</td>';
+echo '<td align="center">';
+if($value == 'usd'){
+	echo number_format($outcome, 2);
+} else {
+	echo floatval($outcome);
+}
+echo '</td>';	
 echo '</tr>';
 endforeach;
 
@@ -65,7 +79,13 @@ echo '<td>';
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND `Currency` = '$currency'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-echo floatval($row['value_sum']);
+
+if($currency == 'usd'){
+	echo number_format($row['value_sum'], 2);
+} else {
+	echo floatval($row['value_sum']);
+}
+	
 echo '</td>';
 endforeach;
 echo '</tr>';
@@ -90,7 +110,13 @@ echo '<td>';
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND YEAR(UID) = YEAR(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-echo floatval($row['value_sum']);
+
+if($currency == 'usd'){
+	echo number_format($row['value_sum'], 2);
+} else {
+	echo floatval($row['value_sum']);
+}
+	
 echo '</td>';
 endforeach;
 echo '</tr>';
@@ -115,7 +141,13 @@ echo '<td>';
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-echo floatval($row['value_sum']);
+
+if($currency == 'usd'){
+	echo number_format($row['value_sum'], 2);
+} else {
+	echo floatval($row['value_sum']);
+}
+
 echo '</td>';
 endforeach;
 echo '</tr>';
@@ -153,7 +185,13 @@ $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$valu
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $owed = $row['value_sum'];
-echo floatval(-$owed + $paid);
+
+if($currency == 'usd'){
+	echo number_format($owed - $paid, 2);
+} else {
+	echo floatval($owed - $paid);
+}
+	
 echo '</td>';
 endforeach;
 echo '</tr>';
