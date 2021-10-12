@@ -30,7 +30,7 @@ endforeach;
 <input type="text" name="who" placeholder="Who?" />
 </td></tr>
 <tr><td  align="center">
-<input type="number" step=".00000001" name="amount" placeholder="Amount?" />
+<input type="number" step="any" name="amount" placeholder="Amount?" />
 </td></tr>
 <tr><td align="center">
 <select name="category">
