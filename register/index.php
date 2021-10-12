@@ -69,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_close($stmt);
         }
 
-        $sql = "CREATE TABLE IF NOT EXISTS `$username` (`UID` datetime NOT NULL, `Category` text NOT NULL, `Who` text NOT NULL, `Amount` decimal(11,2) NOT NULL, `Currency` text NOT NULL, `Bill` text NOT NULL, PRIMARY KEY (`UID`), `Type` tinyint(1) NOT NULL, `Note` text NOT NULL, `File` text NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+        $sql = "CREATE TABLE IF NOT EXISTS `$username` (`UID` datetime NOT NULL, `Category` text NOT NULL, `Who` text NOT NULL, `Amount` decimal(13,8) NOT NULL, `Currency` text NOT NULL, `Bill` text NOT NULL, PRIMARY KEY (`UID`), `Type` tinyint(1) NOT NULL, `Note` text NOT NULL, `File` text NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 		
 		if (!file_exists('../uploads/' . $username . '/')) {
 			mkdir('../uploads/' . $username . '/', 0777, true);
