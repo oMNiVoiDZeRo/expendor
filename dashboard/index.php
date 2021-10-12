@@ -26,16 +26,20 @@ $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'I
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $income = $row['value_sum'];
+# Total logged income.
 
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` != 'Income' AND `Type` = '0' AND `Currency` = '$value'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $outcome = $income - $row['value_sum'];
+# Total logged income subtracted by total logged expenses equals net remaining balance.
 	
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` != 'Income' AND `Type` = '1' AND `Currency` = '$value'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $outcome = $outcome - $row['value_sum'];
+# Currency amount of net remaining balance subtracted by amount owed.
+	
 echo '<td align="right">' . $value . '</td>';
 echo '<td align="center">' . floatval($income) . '</td>';
 echo '<td align="center">' . floatval($outcome) . '</td>';	
