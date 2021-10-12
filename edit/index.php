@@ -39,7 +39,7 @@ endforeach;
 <input type="text" name="who" placeholder="Who?" value="<?php echo $row['Who']; ?>" /><br/>
 </td></tr>
 <tr><td align="center">
-<input type="number" step="any" name="amount" placeholder="Amount?" value="<?php echo floatval($row['Amount']); ?>" /><br/>
+<input type="number" step=".00000001" name="amount" placeholder="Amount?" value="<?php echo floatval($row['Amount']); ?>" /><br/>
 </td></tr>
 <tr><td align="center">
 <select name="category">
