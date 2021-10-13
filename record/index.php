@@ -112,9 +112,9 @@ if(isset($_POST["add"])) {
 		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th><th><strong>Note</strong></th><th><strong>File</strong></th></tr>';
 		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>';
 		if($currency == 'usd'){
-			echo number_format($row['value_sum'], 2);
+			echo number_format($amount, 2);
 		} else {
-			echo floatval($row['value_sum']);
+			echo floatval($amount);
 		}
 		echo '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>';
 		
@@ -162,9 +162,9 @@ if(isset($_POST["update"])) {
 		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th><th><strong>Note</strong></th><th><strong>File</strong></th></tr>';
 		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>';
 		if($currency == 'usd'){
-			echo number_format($row['value_sum'], 2);
+			echo number_format($amount, 2);
 		} else {
-			echo floatval($row['value_sum']);
+			echo floatval($amount);
 		}
 		echo '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>';
 		

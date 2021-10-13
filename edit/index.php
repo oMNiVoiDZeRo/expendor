@@ -140,9 +140,9 @@ echo ' <a class="btn btn-warning" href="../custom/">Edit classifications</a><br/
 <td>
 <?php
 if($row['Currency'] == 'usd'){
-	echo number_format($row['value_sum'], 2);
+	echo number_format($row['Amount'], 2);
 } else {
-	echo floatval($row['value_sum']);
+	echo floatval($row['Amount']);
 }
 ?>
 </td>
