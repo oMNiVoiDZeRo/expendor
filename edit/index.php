@@ -124,7 +124,7 @@ echo ' <a class="btn btn-warning" href="../custom/">Edit classifications</a><br/
 			$result = mysqli_query($conn, $sql);
 			$row = mysqli_fetch_assoc($result);
 ?>
-<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Note</strong></th><th>Bill</th><th></th></tr>
+<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Note</strong></th><th>Bill</th><th></th></tr>
 <tr><td align="center" class="x">
 <input type="hidden" name="date" value="<?php echo $date; ?>" /><?php echo $date; ?>
 </td>
@@ -135,7 +135,16 @@ echo ' <a class="btn btn-warning" href="../custom/">Edit classifications</a><br/
 <?php echo $row['Who']; ?>
 </td>
 <td>
-<?php echo number_format($row['Amount'], 2, '.', ','); ?>
+<?php echo $row['Currency']; ?>
+</td>
+<td>
+<?php
+if($row['Currency'] == 'usd'){
+	echo number_format($row['value_sum'], 2);
+} else {
+	echo floatval($row['value_sum']);
+}
+?>
 </td>
 <td>
 <?php echo $row['Note']; ?>
