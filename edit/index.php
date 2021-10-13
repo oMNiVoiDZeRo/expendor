@@ -118,13 +118,19 @@ echo ' <a class="btn btn-warning" href="../custom/">Edit classifications</a><br/
 <form name="delete" action="../submit/" method="post">
 <table border="1" cellpadding="10" align="center">
 <?php
-  		if(isset($_POST['uid'])){
+		if(isset($_POST['uid'])){
 			$date = $_POST['uid'];
 			$sql = "SELECT * FROM `$username` WHERE `uid` = '$date'";
 			$result = mysqli_query($conn, $sql);
 			$row = mysqli_fetch_assoc($result);
+			$type = $row['Type'];
+			if($type == 0){
+				$typeMessage = "Payment.";
+			} else {
+				$typeMessage = "Debt.";
+			}
 ?>
-<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th align="center"><strong>Note</strong></th><th></th></tr>
+<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Bill</strong></th><th align="center"><strong>Tracking</strong></th><th align="center"><strong>Note</strong></th><th></th></tr>
 <tr><td align="center" class="x">
 <input type="hidden" name="date" value="<?php echo $date; ?>" /><?php echo $date; ?>
 </td>
@@ -148,6 +154,9 @@ if($row['Currency'] == 'usd'){
 </td>
 <td>
 <?php echo $row['Bill']; ?>
+</td>
+<td>
+<?php echo $typeMessage; ?>
 </td>
 <td>
 <?php echo $row['Note']; ?>
