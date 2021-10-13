@@ -161,9 +161,9 @@ if($row['File'] != 'No file attached.'){
 <br/>
 <?php
 echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
-echo '<a class="btn btn-warning" href="../log/">Log</a>';
-echo ' <a class="btn btn-warning" href="../add/">Add Expense.</a> ';
-echo ' <a class="btn btn-warning" href="../custom/">Edit Classifications</a><br/></center>';
+echo '<a class="btn btn-warning" href="../log/">Log</a> ';
+echo '<a class="btn btn-warning" href="../add/">Add Expense</a> ';
+echo '<a class="btn btn-warning" href="../custom/">Edit Classifications</a><br/></center>';
 	}
 }
 
