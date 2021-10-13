@@ -110,7 +110,13 @@ if(isset($_POST["add"])) {
 		echo '<center><p><strong>Expense successfully recorded.</strong></p></center>';
 		echo '<table border="1" cellpadding="10" align="center">';
 		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th><th><strong>Note</strong></th><th><strong>File</strong></th></tr>';
-		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . floatval($amount) . '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>';
+		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>';
+		if($currency == 'usd'){
+			echo number_format($row['value_sum'], 2);
+		} else {
+			echo floatval($row['value_sum']);
+		}
+		echo '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>';
 		
 		if(isset($target_asset)){
 			echo $target_link;
@@ -154,7 +160,13 @@ if(isset($_POST["update"])) {
 		echo '<center><p><strong>Expense successfully updated.</strong></p><p>' . $fileDeleteMessage . '</p></center>';
 		echo '<table border="1" cellpadding="10" align="center">';
 		echo '<tr><th align="center"><strong>Datetime</strong></th><th align="center"><strong>Category</strong></th><th align="center"><strong>Who</strong></th><th align="center"><strong>Amount</strong></th><th align="center"><strong>Currency</strong></th><th align="center"><strong>Bill</strong></th><th><strong>Type</strong></th><th><strong>Note</strong></th><th><strong>File</strong></th></tr>';
-		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>' . floatval($amount) . '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>';
+		echo '<tr><td>' . $date . '</td><td>' . $category . '</td><td>' . $who . '</td><td>';
+		if($currency == 'usd'){
+			echo number_format($row['value_sum'], 2);
+		} else {
+			echo floatval($row['value_sum']);
+		}
+		echo '</td><td>' . $currency . '</td><td>' . $bill . '</td><td>' . $typeMessage . '</td><td>' . $note . '</td><td>';
 		
 		if(file_exists($target_asset)){
 			echo $target_link;
