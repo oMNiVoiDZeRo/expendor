@@ -20,38 +20,53 @@ echo '<th align="center" width="45%"><strong>Spent</strong></th>';
 echo '<th align="center" width="45%"><strong>Debt</strong></th>';
 echo '</tr>';
 
-foreach($currencies as $key => $value):
+foreach($currencies as $key => $currency):
 echo '<tr>';
 	
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Type` = '0' AND `Currency` = '$value'";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Type` = '0' AND `Currency` = '$currency'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $spent = $row['value_sum'];
 # Total logged income subtracted by total logged expenses equals net remaining balance.
 	
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Type` = '1' AND `Currency` = '$value'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-$debt = $row['value_sum'];
-# Currency amount of net remaining balance subtracted by amount owed.
+echo '<td align="right">' . $currency . '</td>';
 	
-echo '<td align="right">' . $value . '</td>';
 echo '<td align="center">';
 	
-if($value == 'usd'){
+if($currency == 'usd'){
 	echo number_format($spent, 2);
 } else {
 	echo floatval($spent);
 }
 
 echo '</td>';
+
 echo '<td align="center">';
-if($value == 'usd'){
-	echo number_format($debt, 2);
+	
+$totalPaid = 0;
+$totalDebt = 0;
+	
+foreach($bills as $key => $value):
+if ($value == 'This is not a bill.') continue;
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND `Currency` = '$currency'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$totalPaid = $totalPaid + $row['value_sum'];
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '1' AND `Currency` = '$currency'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$totalDebt = $totalDebt + $row['value_sum'];
+endforeach;
+
+$remainingDebt = $totalDebt - $totalPaid;
+
+if($currency == 'usd'){
+	echo number_format($remainingDebt, 2);
 } else {
-	echo floatval($debt);
+	echo floatval($remainingDebt);
 }
-echo '</td>';	
+echo '</td>';
+	
 echo '</tr>';
 endforeach;
 
