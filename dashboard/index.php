@@ -17,7 +17,7 @@ echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 echo '<th align="center" width="10%">Currency</th>';
 echo '<th align="center" width="45%"><strong>Spent</strong></th>';
-echo '<th align="center" width="45%"><strong>Invested</strong></th>';
+echo '<th align="center" width="45%"><strong>Debt</strong></th>';
 echo '</tr>';
 
 foreach($currencies as $key => $value):
@@ -32,7 +32,7 @@ $spent = $row['value_sum'];
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Type` = '1' AND `Currency` = '$value'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-$invested = $row['value_sum'];
+$debt = $row['value_sum'];
 # Currency amount of net remaining balance subtracted by amount owed.
 	
 echo '<td align="right">' . $value . '</td>';
@@ -47,9 +47,9 @@ if($value == 'usd'){
 echo '</td>';
 echo '<td align="center">';
 if($value == 'usd'){
-	echo number_format($invested, 2);
+	echo number_format($debt, 2);
 } else {
-	echo floatval($invested);
+	echo floatval($debt);
 }
 echo '</td>';	
 echo '</tr>';
