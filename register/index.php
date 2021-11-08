@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 	
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
-        $sql = "INSERT INTO users (username, password, categories, bills, currencies) VALUES (?, ?, 'Income,Food,Health,Home,Auto,Insurance,Utility,Debt,Work,Entertainment', 'Rent,Electric,Utility,Home Insurance,Health Insurance,Car Insurance,Phone,Loan,Internet,Web Hosting,Medical,This is not a bill.', 'usd')";
+        $sql = "INSERT INTO users (username, password, categories, bills, currencies) VALUES (?, ?, 'Food,Health,Home,Auto,Insurance,Utility,Debt,Work,Entertainment', 'Rent,Electric,Utility,Home Insurance,Health Insurance,Car Insurance,Phone,Loan,Internet,Web Hosting,Medical,This is not a bill.', 'usd')";
          
         if($stmt = mysqli_prepare($conn, $sql)){
             mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);

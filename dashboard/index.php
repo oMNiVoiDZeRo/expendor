@@ -16,45 +16,40 @@ echo '<center><h2>Net Tracking</h2></center><br/>';
 echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 echo '<th align="center" width="10%">Currency</th>';
-echo '<th align="center" width="45%"><strong>Income</strong></th>';
-echo '<th align="center" width="45%"><strong>Outcome</strong></th>';
+echo '<th align="center" width="45%"><strong>Spent</strong></th>';
+echo '<th align="center" width="45%"><strong>Invested</strong></th>';
 echo '</tr>';
 
 foreach($currencies as $key => $value):
 echo '<tr>';
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = 'Income' AND `Type` = '0' AND `Currency` = '$value'";
+	
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Type` = '0' AND `Currency` = '$value'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-$income = $row['value_sum'];
-# Total logged income.
-
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` != 'Income' AND `Type` = '0' AND `Currency` = '$value'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-$outcome = $income - $row['value_sum'];
+$spent = $row['value_sum'];
 # Total logged income subtracted by total logged expenses equals net remaining balance.
 	
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` != 'Income' AND `Type` = '1' AND `Currency` = '$value'";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Type` = '1' AND `Currency` = '$value'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
-$outcome = $outcome - $row['value_sum'];
+$invested = $row['value_sum'];
 # Currency amount of net remaining balance subtracted by amount owed.
 	
 echo '<td align="right">' . $value . '</td>';
 echo '<td align="center">';
 	
 if($value == 'usd'){
-	echo number_format($income, 2);
+	echo number_format($spent, 2);
 } else {
-	echo floatval($income);
+	echo floatval($spent);
 }
 
 echo '</td>';
 echo '<td align="center">';
 if($value == 'usd'){
-	echo number_format($outcome, 2);
+	echo number_format($invested, 2);
 } else {
-	echo floatval($outcome);
+	echo floatval($invested);
 }
 echo '</td>';	
 echo '</tr>';
@@ -76,6 +71,7 @@ echo '<tr>';
 echo '<td align="right">' . $currency . '</td>';
 foreach($categories as $key => $value):
 echo '<td>';
+
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND `Currency` = '$currency'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
@@ -107,6 +103,7 @@ echo '<tr>';
 echo '<td align="right">' . $currency . '</td>';
 foreach($categories as $key => $value):
 echo '<td>';
+
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND YEAR(UID) = YEAR(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
@@ -138,6 +135,7 @@ echo '<tr>';
 echo '<td align="right">' . $currency . '</td>';
 foreach($categories as $key => $value):
 echo '<td>';
+
 $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
