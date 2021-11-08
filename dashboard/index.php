@@ -17,7 +17,7 @@ echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr>';
 echo '<th align="center" width="10%">Currency</th>';
 echo '<th align="center" width="45%"><strong>Spent</strong></th>';
-echo '<th align="center" width="45%"><strong>Debt</strong></th>';
+echo '<th align="center" width="45%"><strong>Remaining Debt</strong></th>';
 echo '</tr>';
 
 foreach($currencies as $key => $currency):
