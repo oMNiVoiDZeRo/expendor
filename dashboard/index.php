@@ -60,6 +60,10 @@ endforeach;
 
 $remainingDebt = $totalDebt - $totalPaid;
 
+if($remainingDebt < 0) {
+	$remainingDebt = 0;
+}
+
 if($currency == 'usd'){
 	echo number_format($remainingDebt, 2);
 } else {
