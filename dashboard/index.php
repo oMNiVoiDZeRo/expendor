@@ -202,11 +202,16 @@ $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$valu
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $owed = $row['value_sum'];
+$owed = $owed - $paid;
+	
+if($owed < 0) {
+	$owed = 0;
+}
 
 if($currency == 'usd'){
-	echo number_format($owed - $paid, 2);
+	echo number_format($owed, 2);
 } else {
-	echo floatval($owed - $paid);
+	echo floatval($owed);
 }
 	
 echo '</td>';
