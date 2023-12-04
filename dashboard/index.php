@@ -155,7 +155,7 @@ echo '<td align="right">' . $currency . '</td>';
 foreach($categories as $key => $value):
 echo '<td>';
 
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Category` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE()) AND YEAR(UID) = YEAR(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
@@ -191,7 +191,7 @@ $sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$valu
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $paid = $row['value_sum'];
-$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE())";
+$sql = "SELECT SUM(`Amount`) AS value_sum FROM `$username` WHERE `Bill` = '$value' AND `Type` = '0' AND `Currency` = '$currency' AND MONTH(UID) = MONTH(CURRENT_DATE()) AND YEAR(UID) = YEAR(CURRENT_DATE())";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $monthPaid = $row['value_sum'];
