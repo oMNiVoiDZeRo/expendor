@@ -27,7 +27,6 @@ else {
 echo '<table border="1" cellpadding="10" align="center">';
 echo '<tr><td align="center">Failed to delete record.' . $fileDeleteMessage . '</td></tr>';
 echo '</table>';}}
-include('../footer.php');
 ?>
 <br/>
 <?php
