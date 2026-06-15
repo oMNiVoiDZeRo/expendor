@@ -120,7 +120,7 @@ $(document).ready(function() {
 		var $table = $(this).closest('table');
 		var $row = $(this).closest('tr');
 		$table.find('tbody.custom-add').append('<tr><td><br/><a class="btn btn-warning addCat" href="#">Add Category</a><br/><br/><br/></td></tr>');
-		$(this).parent().html(itemRowHtml('categories'));
+		$(this).parent().addClass('d-flex').html(itemRowHtml('categories'));
 		$row.addClass('sortable-item').appendTo($table.find('.sortable-list'));
 	});
 	$('table').on("click",".addBill", function(e){
@@ -128,7 +128,7 @@ $(document).ready(function() {
 		var $table = $(this).closest('table');
 		var $row = $(this).closest('tr');
 		$table.find('tbody.custom-add').append('<tr><td><br/><a class="btn btn-warning addBill" href="#">Add Bill</a><br/><br/><br/></td></tr>');
-		$(this).parent().html(itemRowHtml('bills'));
+		$(this).parent().addClass('d-flex').html(itemRowHtml('bills'));
 		$row.addClass('sortable-item').appendTo($table.find('.sortable-list'));
 	});
 	$('table').on("click",".addCurrency", function(e){
@@ -136,7 +136,7 @@ $(document).ready(function() {
 		var $table = $(this).closest('table');
 		var $row = $(this).closest('tr');
 		$table.find('tbody.custom-add').append('<tr><td><br/><a class="btn btn-warning addCurrency" href="#">Add Currency</a><br/><br/><br/></td></tr>');
-		$(this).parent().html(itemRowHtml('currencies'));
+		$(this).parent().addClass('d-flex').html(itemRowHtml('currencies'));
 		$row.addClass('sortable-item').appendTo($table.find('.sortable-list'));
 	});
 });
