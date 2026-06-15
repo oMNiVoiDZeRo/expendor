@@ -56,10 +56,25 @@ table.custom tr {
 	position: relative;
 }
 
-table.custom tr td a.delete {
-	position: absolute;
-	top: 50%;
-	transform: translate(-80px,-50%);
+table.custom tr td {
+	align-items: center;
+	gap: 2em;
+}
+
+table.custom .drag-handle {
+	cursor: grab;
+	color: #999;
+	margin-right: 8px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+table.custom .drag-handle:active {
+	cursor: grabbing;
+}
+
+table.custom .ui-sortable-helper {
+	display: table;
 }
 
 table tr td {

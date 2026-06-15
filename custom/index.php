@@ -43,26 +43,35 @@ $categories = explode (",", $row['categories']);
 $bills = explode (",", $row['bills']);
 $currencies = explode (",", $row['currencies']);
 echo '<form action=' . htmlspecialchars($_SERVER["PHP_SELF"]) . ' method="post">';
+$itemRow = function($name, $value) {
+	return '<tr class="sortable-item"><td class="d-flex"><span class="drag-handle" title="Drag to reorder"><i class="fas fa-grip-vertical"></i></span> <input type="text" name="'.$name.'[]" value="'.$value.'" /> <a class="btn btn-danger delete" href="#">Delete</a></td></tr>';
+};
 echo '<table class="custom categories" align="center">';
 echo '<tr><td><center><h2>Customize your categories:</h2></center><hr/></td></tr>';
+echo '<tbody class="sortable-list">';
 foreach($categories as $key => $value):
-echo '<tr><td><input type="text" name="categories[]" value="'.$value.'" /> <a class="btn btn-danger delete" href="#">Delete</a></td></tr>';
+echo $itemRow('categories', $value);
 endforeach;
-echo '<tr><td><br/><a class="btn btn-warning addCat" href="#">Add Category</a><br/><br/><br/></td></tr>';
+echo '</tbody>';
+echo '<tbody class="custom-add"><tr><td><br/><a class="btn btn-warning addCat" href="#">Add Category</a><br/><br/><br/></td></tr></tbody>';
 echo '</table><br/><hr/><br/>';
 echo '<table class="custom bills" align="center">';
 echo '<tr><td><center><h2>Customize your bills:</h2></center><hr/></td></tr>';
+echo '<tbody class="sortable-list">';
 foreach($bills as $key => $value):
-echo '<tr><td><input type="text" name="bills[]" value="'.$value.'" /> <a class="btn btn-danger delete" href="#">Delete</a></td></tr>';
+echo $itemRow('bills', $value);
 endforeach;
-echo '<tr><td><br/><a class="btn btn-warning addBill" href="#">Add Bill</a><br/><br/><br/></td></tr>';
+echo '</tbody>';
+echo '<tbody class="custom-add"><tr><td><br/><a class="btn btn-warning addBill" href="#">Add Bill</a><br/><br/><br/></td></tr></tbody>';
 echo '</table><br/><hr/><br/>';
 echo '<table class="custom currencies" align="center">';
 echo '<tr><td><center><h2>Customize your currencies:</h2></center><hr/></td></tr>';
+echo '<tbody class="sortable-list">';
 foreach($currencies as $key => $value):
-echo '<tr><td><input type="text" name="currencies[]" value="'.$value.'" /> <a class="btn btn-danger delete" href="#">Delete</a></td></tr>';
+echo $itemRow('currencies', $value);
 endforeach;
-echo '<tr><td><br/><a class="btn btn-warning addCurrency" href="#">Add Currency</a><br/><br/><br/></td></tr>';
+echo '</tbody>';
+echo '<tbody class="custom-add"><tr><td><br/><a class="btn btn-warning addCurrency" href="#">Add Currency</a><br/><br/><br/></td></tr></tbody>';
 echo '</table><br/><hr/><br/>';
 echo '<center><input class="btn btn-warning" type="submit" value="Save Classifications" /></center></form>';
 echo '<br/>';
@@ -70,26 +79,47 @@ echo '<center><a class="btn btn-warning" href="../dashboard/">Dashboard</a> ';
 echo ' <a class="btn btn-warning" href="../log/">Log</a> ';
 echo ' <a class="btn btn-warning" href="../add/">Add Expense</a></center>';
 ?>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 <script>
+var itemRowHtml = function(name) {
+	return '<span class="drag-handle" title="Drag to reorder"><i class="fas fa-grip-vertical"></i></span> <input type="text" name="' + name + '[]" value="" /> <a class="btn btn-danger delete" href="#">Delete</a>';
+};
 $(document).ready(function() {
+	$('table.custom .sortable-list').sortable({
+		handle: '.drag-handle',
+		items: 'tr.sortable-item',
+		cursor: 'grabbing',
+		opacity: 0.8,
+		tolerance: 'pointer'
+	});
 	$('table').on("click",".delete", function(e){
 		e.preventDefault();
-		$(this).parent().parent().remove();
-	})	
+		$(this).closest('tr.sortable-item').remove();
+	});
 	$('table').on("click",".addCat", function(e){
 		e.preventDefault();
-		$(this).parent().parent().parent().append('<tr><td><br/><a class="btn btn-warning addCat" href="#">Add Category</a><br/><br/><br/><br/></td></tr>');
-		$(this).parent().html( '<input type="text" name="categories[]" value="" /> <a class="btn btn-danger delete" href="#">Delete</a>');
+		var $table = $(this).closest('table');
+		var $row = $(this).closest('tr');
+		$table.find('tbody.custom-add').append('<tr><td><br/><a class="btn btn-warning addCat" href="#">Add Category</a><br/><br/><br/></td></tr>');
+		$(this).parent().html(itemRowHtml('categories'));
+		$row.addClass('sortable-item').appendTo($table.find('.sortable-list'));
 	});
 	$('table').on("click",".addBill", function(e){
 		e.preventDefault();
-		$(this).parent().parent().parent().append('<tr><td><br/><a class="btn btn-warning addBill" href="#">Add Bill</a><br/><br/><br/><br/></td></tr>');
-		$(this).parent().html( '<input type="text" name="bills[]" value="" /> <a class="btn btn-danger delete" href="#">Delete</a>');
+		var $table = $(this).closest('table');
+		var $row = $(this).closest('tr');
+		$table.find('tbody.custom-add').append('<tr><td><br/><a class="btn btn-warning addBill" href="#">Add Bill</a><br/><br/><br/></td></tr>');
+		$(this).parent().html(itemRowHtml('bills'));
+		$row.addClass('sortable-item').appendTo($table.find('.sortable-list'));
 	});
 	$('table').on("click",".addCurrency", function(e){
 		e.preventDefault();
-		$(this).parent().parent().parent().append('<tr><td><br/><a class="btn btn-warning addCurrency" href="#">Add Currency</a><br/><br/><br/><br/></td></tr>');
-		$(this).parent().html( '<input type="text" name="currencies[]" value="" /> <a class="btn btn-danger delete" href="#">Delete</a>');
+		var $table = $(this).closest('table');
+		var $row = $(this).closest('tr');
+		$table.find('tbody.custom-add').append('<tr><td><br/><a class="btn btn-warning addCurrency" href="#">Add Currency</a><br/><br/><br/></td></tr>');
+		$(this).parent().html(itemRowHtml('currencies'));
+		$row.addClass('sortable-item').appendTo($table.find('.sortable-list'));
 	});
 });
 </script>
