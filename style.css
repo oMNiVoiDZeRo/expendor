@@ -75,6 +75,18 @@ table.custom .drag-handle:active {
 
 table.custom .ui-sortable-helper {
 	display: table;
+	z-index: 1000;
+}
+
+table.custom tr.sortable-placeholder {
+	visibility: visible !important;
+}
+
+table.custom tr.sortable-placeholder td {
+	background: rgba(252, 234, 187, 0.35);
+	border: 2px dashed #f8b500;
+	box-sizing: border-box;
+	visibility: visible;
 }
 
 table tr td {

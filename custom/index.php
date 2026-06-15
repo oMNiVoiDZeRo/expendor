@@ -85,13 +85,31 @@ echo ' <a class="btn btn-warning" href="../add/">Add Expense</a></center>';
 var itemRowHtml = function(name) {
 	return '<span class="drag-handle" title="Drag to reorder"><i class="fas fa-grip-vertical"></i></span> <input type="text" name="' + name + '[]" value="" /> <a class="btn btn-danger delete" href="#">Delete</a>';
 };
+var sortableRowHelper = function(e, $row) {
+	var $cells = $row.children();
+	var $helper = $row.clone();
+	$helper.children().each(function(i) {
+		$(this).width($cells.eq(i).width());
+	});
+	return $helper;
+};
 $(document).ready(function() {
 	$('table.custom .sortable-list').sortable({
 		handle: '.drag-handle',
 		items: 'tr.sortable-item',
+		helper: sortableRowHelper,
+		placeholder: 'sortable-placeholder',
+		forcePlaceholderSize: true,
 		cursor: 'grabbing',
 		opacity: 0.8,
-		tolerance: 'pointer'
+		tolerance: 'intersect',
+		start: function(e, ui) {
+			if (!ui.placeholder.children('td').length) {
+				ui.placeholder.html('<td>&nbsp;</td>');
+			}
+			ui.placeholder.height(ui.item.outerHeight());
+			ui.placeholder.children('td').height(ui.item.outerHeight());
+		}
 	});
 	$('table').on("click",".delete", function(e){
 		e.preventDefault();
